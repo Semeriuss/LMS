@@ -13,6 +13,7 @@ namespace CourseLibrary.API.DbContexts
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Content> Content { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -146,6 +147,54 @@ namespace CourseLibrary.API.DbContexts
                    Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note."
                }
                );
+
+            modelBuilder.Entity<Content>().HasData(
+                new Content
+                {
+                    Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b00"),
+                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CourseId = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
+                    Title = "OOP II",
+                    Type = "Video",
+                    Data = "Lecture1.mp4"
+                },
+                new Content
+                {
+                    Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b01"),
+                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CourseId = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
+                    Title = "Web",
+                    Type = "Video",
+                    Data = "Lecture1.mp4"
+                },
+                new Content
+                {
+                    Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b02"),
+                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                    Title = "System",
+                    Type = "Video",
+                    Data = "Lecture1.mp4"
+                },
+                new Content
+                {
+                    Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b03"),
+                    AuthorId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                    CourseId = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
+                    Title = "DLD",
+                    Type = "Video",
+                    Data = "Lecture1.mp4"
+                },
+                new Content
+                {
+                    Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b04"),
+                    AuthorId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
+                    CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                    Title = "Dyna",
+                    Type = "Video",
+                    Data = "Lecture1.mp4"
+                }
+            );
 
             base.OnModelCreating(modelBuilder);
         }

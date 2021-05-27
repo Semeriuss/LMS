@@ -29,26 +29,26 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CourseDto>> GetCoursesForAuthor(Guid AuthorId)
+        public ActionResult<IEnumerable<CourseDto>> GetCoursesForAuthor(Guid authorId)
         {
-            if (!_courseLibraryRepository.AuthorExists(AuthorId))
+            if (!_courseLibraryRepository.AuthorExists(authorId))
             {
                 return NotFound();
             }
 
-            var coursesForAuthorFromRepo = _courseLibraryRepository.GetCourses(AuthorId);
+            var coursesForAuthorFromRepo = _courseLibraryRepository.GetCourses(authorId);
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(coursesForAuthorFromRepo));
         }
 
-        [HttpGet("{CourseId}", Name = "GetCourseForAuthor")]
-        public ActionResult<IEnumerable<CourseDto>> GetCourseForAuthor(Guid AuthorId, Guid CourseId)
+        [HttpGet("{courseId}", Name = "GetCourseForAuthor")]
+        public ActionResult<IEnumerable<CourseDto>> GetCourseForAuthor(Guid authorId, Guid courseId)
         {
-            if (!_courseLibraryRepository.AuthorExists(AuthorId))
+            if (!_courseLibraryRepository.AuthorExists(authorId))
             {
                 return NotFound();
             }
 
-            var courseForAuthorFromRepo = _courseLibraryRepository.GetCourse(AuthorId, CourseId);
+            var courseForAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
 
             if (courseForAuthorFromRepo == null)
             {
@@ -94,7 +94,7 @@ namespace CourseLibrary.API.Controllers
                 _courseLibraryRepository.Save();
 
                 return CreatedAtRoute("GetCourseForAuthor",
-                    new { authorId, courseId = courseToReturn.Id}, courseToReturn);
+                    new {authorId = authorId, courseId = courseToReturn.Id}, courseToReturn);
             }
 
             //map the entity to a CourseForUpdateDto
@@ -139,7 +139,7 @@ namespace CourseLibrary.API.Controllers
                 var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
 
                 return CreatedAtRoute("GetCourseForAuthor",
-                    new { authorId, courseId = courseToReturn.Id, },
+                    new {authorId = authorId, courseId = courseToReturn.Id, },
                     courseToReturn);
             }
 

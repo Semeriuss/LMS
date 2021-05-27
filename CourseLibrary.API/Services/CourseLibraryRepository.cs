@@ -62,7 +62,8 @@ namespace CourseLibrary.API.Services
 
             return _context.Courses
                         .Where(c => c.AuthorId == authorId)
-                        .OrderBy(c => c.Title).ToList();
+                        .OrderBy(c => c.Title)
+                        .ToList();
         }
 
         public void UpdateCourse(Course course)
@@ -96,6 +97,16 @@ namespace CourseLibrary.API.Services
             }
 
             return _context.Authors.Any(a => a.Id == authorId);
+        }
+
+        public bool CourseExists(Guid courseId)
+        {
+            if (courseId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(courseId));
+            }
+
+            return _context.Courses.Any(a => a.Id == courseId);
         }
 
         public void DeleteAuthor(Author author)
@@ -184,6 +195,83 @@ namespace CourseLibrary.API.Services
             {
                // dispose resources when needed
             }
+        }
+
+        // Content
+        public IEnumerable<Content> GetContents(Guid authorId, Guid courseId)
+        {
+            if (authorId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(authorId));
+            }
+
+            if (courseId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(courseId));
+            }
+
+            return _context.Content
+                .Where(c => c.AuthorId == authorId && c.CourseId == courseId)
+                .OrderBy(c => c.Title)
+                .ToList();
+        }
+
+        public Content GetContent(Guid authorId, Guid courseId, Guid contentId)
+        {
+            if (authorId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(authorId));
+            }
+
+            if (courseId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(courseId));
+            }
+
+            if (contentId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(contentId));
+            }
+
+            return _context.Content
+                .Where(c => c.AuthorId == authorId && c.CourseId == courseId && c.Id == contentId).FirstOrDefault();
+        }
+
+        public void AddContent(Guid authorId, Guid courseId, Content content)
+        {
+            if (authorId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(authorId));
+            }
+
+            if (courseId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(courseId));
+            }
+
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+
+            content.AuthorId = authorId;
+            content.CourseId = courseId;
+            _context.Content.Add(content);
+        }
+
+        //public void UpdateContent(Content content)
+        //{
+
+        //}
+
+        public void DeleteContent(Content content)
+        {
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+
+            _context.Content.Remove(content);
         }
     }
 }

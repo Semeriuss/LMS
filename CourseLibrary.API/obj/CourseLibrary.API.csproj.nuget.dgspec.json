@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\CourseLibrary.API.csproj": {}
+    "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\CourseLibrary.API.csproj": {
+    "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\CourseLibrary.API.csproj",
+        "projectUniqueName": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
         "projectName": "CourseLibrary.API",
-        "projectPath": "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\CourseLibrary.API.csproj",
-        "packagesPath": "C:\\Users\\semer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\obj\\",
+        "projectPath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
+        "packagesPath": "C:\\Users\\Aymenua\\.nuget\\packages\\",
+        "outputPath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\semer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Aymenua\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

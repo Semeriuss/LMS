@@ -42,6 +42,34 @@ namespace CourseLibrary.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Content",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Content", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Content_Authors_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Authors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Content_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Authors",
                 columns: new[] { "Id", "DateOfBirth", "FirstName", "LastName", "MainCategory" },
@@ -72,10 +100,27 @@ namespace CourseLibrary.API.Migrations
                     { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.", "Singalong Pirate Hits" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Content",   
+                columns: new[] { "Id", "AuthorId", "CourseId", "Title", "Type" , "Data"},
+                values: new object[,]
+                {
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b00"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "OOP II", "Video", "Lecture1.mp4" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b01"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "Web", "Video", "Lecture1.mp4" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b02"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "System", "Video", "Lecture1.mp4" },                    
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b03"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "DLD", "Video", "Lecture1.mp4" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b04"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "Dyna", "Video", "Lecture1.mp4" },
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_AuthorId",
                 table: "Courses",
                 column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Content_CourseId",
+                table: "Content",
+                column: "CourseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -85,6 +130,9 @@ namespace CourseLibrary.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Authors");
+
+            migrationBuilder.DropTable(
+                name: "Content");
         }
     }
 }

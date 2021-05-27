@@ -20,6 +20,14 @@ namespace CourseLibrary.API.Services
         void DeleteAuthor(Author author);
         void UpdateAuthor(Author author);
         bool AuthorExists(Guid authorId);
+        bool CourseExists(Guid courseId);
         bool Save();
+
+        // Content
+        IEnumerable<Content> GetContents(Guid authorId, Guid courseId);
+        Content GetContent(Guid authorId, Guid courseId, Guid contentId);
+        void AddContent(Guid authorId, Guid courseId, Content content);
+        //void UpdateContent(Content content);
+        //void DeleteContent(Content content);
     }
 }
