@@ -28,6 +28,6 @@ namespace CourseLibrary.API.Services
         Content GetContent(Guid authorId, Guid courseId, Guid contentId);
         void AddContent(Guid authorId, Guid courseId, Content content);
         //void UpdateContent(Content content);
-        //void DeleteContent(Content content);
+        void DeleteContent(Content content);
     }
 }

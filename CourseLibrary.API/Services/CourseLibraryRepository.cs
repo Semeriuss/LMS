@@ -256,6 +256,9 @@ namespace CourseLibrary.API.Services
 
             content.AuthorId = authorId;
             content.CourseId = courseId;
+
+            content.Id = Guid.NewGuid();
+
             _context.Content.Add(content);
         }
 

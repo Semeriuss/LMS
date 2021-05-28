@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CourseLibrary.API.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,11 +47,11 @@ namespace CourseLibrary.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Data = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,14 +60,12 @@ namespace CourseLibrary.API.Migrations
                         name: "FK_Content_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Content_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -101,38 +99,43 @@ namespace CourseLibrary.API.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Content",   
-                columns: new[] { "Id", "AuthorId", "CourseId", "Title", "Type" , "Data"},
+                table: "Content",
+                columns: new[] { "Id", "AuthorId", "CourseId", "Data", "Title", "Type" },
                 values: new object[,]
                 {
-                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b00"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "OOP II", "Video", "Lecture1.mp4" },
-                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b01"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "Web", "Video", "Lecture1.mp4" },
-                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b02"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "System", "Video", "Lecture1.mp4" },                    
-                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b03"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "DLD", "Video", "Lecture1.mp4" },
-                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b04"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "Dyna", "Video", "Lecture1.mp4" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b00"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "Lecture1.mp4", "OOP II", "Video" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b01"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "Lecture1.mp4", "Web", "Video" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b03"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), "Lecture1.mp4", "DLD", "Video" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b02"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), "Lecture1.mp4", "System", "Video" },
+                    { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b04"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), "Lecture1.mp4", "Dyna", "Video" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_AuthorId",
-                table: "Courses",
+                name: "IX_Content_AuthorId",
+                table: "Content",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Content_CourseId",
                 table: "Content",
                 column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Courses_AuthorId",
+                table: "Courses",
+                column: "AuthorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Content");
+
+            migrationBuilder.DropTable(
                 name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Authors");
-
-            migrationBuilder.DropTable(
-                name: "Content");
         }
     }
 }

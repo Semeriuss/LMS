@@ -24,17 +24,17 @@ namespace CourseLibrary.API.Controllers
                       throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]
+        [HttpGet]   
         public ActionResult<IEnumerable<ContentDto>> GetContentsForAuthorAndCourse(Guid authorId, Guid courseId)
         {
-            if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
-            {
-                return NotFound();
-            }
+            //if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
+            //{
+            //    return NotFound();
+            //}
 
             var contentsFromRepo = _courseLibraryRepository.GetContents(authorId, courseId);
 
-            return Ok(_mapper.Map<IEnumerable<CourseDto>>(contentsFromRepo));
+            return Ok(_mapper.Map<IEnumerable<ContentDto>>(contentsFromRepo));
         }
 
         [HttpGet("{contentId}", Name = "GetContentForAuthorAndCourse")]
@@ -66,7 +66,7 @@ namespace CourseLibrary.API.Controllers
             _courseLibraryRepository.AddContent(authorId, courseId, contentEntity);
             _courseLibraryRepository.Save();
 
-            var contentToReturn = _mapper.Map<CourseDto>(contentEntity);
+            var contentToReturn = _mapper.Map<ContentDto>(contentEntity);
 
             return CreatedAtRoute("GetContentForAuthorAndCourse",
                 new { authorId = authorId, courseId = courseId, contentId = contentToReturn.Id }, contentToReturn);
