@@ -12,6 +12,7 @@ namespace CourseLibrary.API.Services
         void AddCourse(Guid authorId, Course course);
         void UpdateCourse(Course course);
         void DeleteCourse(Course course);
+        bool CourseExists(Guid courseId);
         IEnumerable<Author> GetAuthors();
         IEnumerable<Author> GetAuthors(AuthorsResourceParameters authorsResourceParameters);
         Author GetAuthor(Guid authorId);
@@ -20,6 +21,11 @@ namespace CourseLibrary.API.Services
         void DeleteAuthor(Author author);
         void UpdateAuthor(Author author);
         bool AuthorExists(Guid authorId);
+        CourseRating GetRating(Guid authorId, Guid courseId);
+        void AddRating(Guid authorId, Guid courseId, CourseRating courseRating);
+        void DeleteRating(CourseRating courseRating);
+        double GetRatings(Guid courseId);
+        void UpdateRating(CourseRating courseRating);
         bool Save();
     }
 }

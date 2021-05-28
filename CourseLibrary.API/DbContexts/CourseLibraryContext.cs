@@ -1,6 +1,7 @@
 ﻿using CourseLibrary.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using CourseLibrary.API.Models;
 
 namespace CourseLibrary.API.DbContexts
 {
@@ -13,6 +14,8 @@ namespace CourseLibrary.API.DbContexts
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Course> Courses { get; set; }
+
+        public DbSet<CourseRating> CourseRatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -147,7 +150,43 @@ namespace CourseLibrary.API.DbContexts
                }
                );
 
+            modelBuilder.Entity<CourseRating>().HasData(
+               new CourseRating
+               {
+                   Id = 1111,
+                   CourseId = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
+                   AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                   Value = 4
+               },
+               new CourseRating
+               {
+                   Id = 2222,
+                   CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                   AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                   Value = 3                  
+               },
+               new CourseRating
+               {
+                   Id = 3333,
+                   CourseId = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
+                   AuthorId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                   Value = 1
+               },
+               new CourseRating
+               {
+                   Id = 4444,
+                   CourseId = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                   AuthorId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
+                   Value = 4
+               }
+               );
+
+
+
+
             base.OnModelCreating(modelBuilder);
         }
+
+
     }
 }
