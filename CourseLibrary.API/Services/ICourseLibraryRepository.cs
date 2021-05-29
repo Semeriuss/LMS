@@ -21,5 +21,8 @@ namespace CourseLibrary.API.Services
         void UpdateAuthor(Author author);
         bool AuthorExists(Guid authorId);
         bool Save();
+        bool CatagoryExists(Guid catagoryId);
+        object GetCatagory(Guid catagoryId);
+        void AddCatagory(Guid catagoryId, object catagoryEntity);
     }
 }
