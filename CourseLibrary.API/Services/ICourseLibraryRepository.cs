@@ -27,7 +27,7 @@ namespace CourseLibrary.API.Services
         IEnumerable<Content> GetContents(Guid authorId, Guid courseId);
         Content GetContent(Guid authorId, Guid courseId, Guid contentId);
         void AddContent(Guid authorId, Guid courseId, Content content);
-        //void UpdateContent(Content content);
+        void UpdateContent(Content content);
         void DeleteContent(Content content);
     }
 }

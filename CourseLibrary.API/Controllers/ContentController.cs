@@ -71,5 +71,60 @@ namespace CourseLibrary.API.Controllers
             return CreatedAtRoute("GetContentForAuthorAndCourse",
                 new { authorId = authorId, courseId = courseId, contentId = contentToReturn.Id }, contentToReturn);
         }
+
+        [HttpPut("{contentId}")]
+        public IActionResult UpdateContent(Guid authorId, Guid courseId, Guid contentId, ContentForUpdateDto content)
+        {
+            if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
+            {
+                return NotFound();
+            }
+
+            var contentFromRepo = _courseLibraryRepository.GetContent(authorId, courseId, contentId);
+
+            if (contentFromRepo == null)
+            {
+                var contentToReturn = _mapper.Map<Entities.Content>(content);
+                contentToReturn.Id = contentId;
+
+                _courseLibraryRepository.AddContent(authorId, courseId, contentToReturn);
+                _courseLibraryRepository.Save();
+
+                return CreatedAtRoute("GetContentForAuthorAndCourse",
+                    new { authorId = authorId, courseId = courseId, contentId = contentToReturn.Id }, contentToReturn);
+            }
+
+            //map the entity to a CourseForUpdateDto
+            //apply the updated field values to that dto
+            //map the CourseForUpdateDto back to an entity
+            _mapper.Map(content, contentFromRepo);
+
+            _courseLibraryRepository.UpdateContent(contentFromRepo);
+
+            _courseLibraryRepository.Save();
+            return NoContent();
+        }
+
+        [HttpDelete("{contentId}")]
+        public ActionResult DeleteContentForCourse(Guid authorId, Guid courseId, Guid contentId)
+        {
+            if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
+            {
+                return NotFound();
+            }
+
+            var contentFromRepo = _courseLibraryRepository.GetContent(authorId, courseId, contentId);
+
+            if (contentFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _courseLibraryRepository.DeleteContent(contentFromRepo);
+            _courseLibraryRepository.Save();
+
+            return NoContent();
+
+        }
     }
 }

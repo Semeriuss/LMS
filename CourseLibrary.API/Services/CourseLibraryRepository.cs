@@ -262,10 +262,10 @@ namespace CourseLibrary.API.Services
             _context.Content.Add(content);
         }
 
-        //public void UpdateContent(Content content)
-        //{
+        public void UpdateContent(Content content)
+        {
 
-        //}
+        }
 
         public void DeleteContent(Content content)
         {
