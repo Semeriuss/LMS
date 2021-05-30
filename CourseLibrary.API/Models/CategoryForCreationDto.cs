@@ -7,5 +7,8 @@ namespace CourseLibrary.API.Models
 {
     public class CategoryForCreationDto
     {
+        public string Title { get; set; }
+
+        public string Description { get; set; }
     }
 }
