@@ -108,10 +108,13 @@ namespace CourseLibrary.API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICourseLibraryRepository, CourseLibraryRepository>();
 
+            services.AddSwaggerGen();
+
             services.AddDbContext<CourseLibraryContext>(options =>
             {
-                options.UseSqlServer(
-                    @"Server=(localdb)\mssqllocaldb;Database=CourseLibraryDB;Trusted_Connection=True;");
+                options.UseSqlite("Data Source=CourseLibrary");
+                //options.UseSqlServer(
+                //    @"Server=(localdb)\mssqllocaldb;Database=CourseLibraryDB;Trusted_Connection=True;");
             }); 
         }
 
@@ -133,6 +136,13 @@ namespace CourseLibrary.API
                     });
                 });
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 
