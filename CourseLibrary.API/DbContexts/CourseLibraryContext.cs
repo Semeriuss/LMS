@@ -13,6 +13,7 @@ namespace CourseLibrary.API.DbContexts
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -146,6 +147,32 @@ namespace CourseLibrary.API.DbContexts
                    Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note."
                }
                );
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    categoryId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
+                    Title = "Mathematics",
+                    Description = "In this course you'll learn how to calculate favourite pirate songs without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    categoryId = Guid.Parse("2902b665-1190-4b59-9915-b9c2d7680450"),
+                    Title = "Natural Science",
+                    Description = "In this course you'll learn nature and it's science without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    categoryId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d657890"),
+                    Title = "Astronomy",
+                    Description = "In this course you'll learn the universe and beyond favourite pirate songs without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    categoryId = Guid.Parse("2902b665-1190-4c70-9915-a35dd678540"),
+                    Title = "Computer Science",
+                    Description = "In this course you'll learn how to program a software without sounding like you actually know the words or how to hold a note."
+                }
+                );
 
             base.OnModelCreating(modelBuilder);
         }

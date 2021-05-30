@@ -30,15 +30,31 @@ namespace CourseLibrary.API.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public ActionResult<IEnumerable<CategoryDto>> GetCategories(Guid categoryId, Array Categories)
+        public ActionResult<IEnumerable<CategoryDto>> GetCategoriesForCourse(Guid courseId)
         {   
+            if (!_courseLibraryRepository.CategoryExists(courseId))
+            {
+                return NotFound();
+            }
+
+            var catagoryFromRepo = _courseLibraryRepository.GetCategories(courseId);
+            return Ok(_mapper.Map<IEnumerable<CategoryDto>>(catagoryFromRepo));
+        }
+        [HttpGet("{categoryId}", Name = "GetCategoryForCourse")]
+        public ActionResult<IEnumerable<CategoryDto>> GetCategoryForCourse(Guid categoryId)
+        {
             if (!_courseLibraryRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
 
-            var catagoryFromRepo = _courseLibraryRepository.GetCategory(categoryId);
-            return Ok(_mapper.Map<IEnumerable<CategoryDto>>(catagoryFromRepo));
+            var categoryFromRepo = _courseLibraryRepository.GetCategory(categoryId);
+            if (categoryFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<CategoryDto>(categoryFromRepo));
         }
 
         [HttpPost]

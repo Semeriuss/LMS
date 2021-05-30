@@ -185,5 +185,58 @@ namespace CourseLibrary.API.Services
                // dispose resources when needed
             }
         }
+        //Category
+        public IEnumerable<Category> GetCatagories(Guid courseId)
+        {
+            if (courseId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(courseId));
+            }
+
+            return _context.Categories
+                        .Where(c => c.courseId == courseId)
+                        .OrderBy(c => c.Title).ToList();
+        }
+        public Course GetCategory(Guid categoryId)
+        {
+            if (categoryId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(categoryId));
+            }
+
+            return _context.Categories
+              .Where(c => c.categoryId == categoryId).FirstOrDefault();
+        }
+
+        public void AddCategory(Guid categoryId, Category category)
+        {
+            if (categoryId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(categoryId));
+            }
+
+            if (category == null)
+            {
+                throw new ArgumentNullException(nameof(category));
+            }
+            
+            category.categoryId = categoryId;
+            _context.Categories.Add(category);
+        }
+        public void UpdateCategory(Category category)
+        {
+            // no code in this implementation
+        }
+        public string DeleteCategory(Category category)
+        {
+            if (category == null)
+            {
+                _context.Categories.Remove(category);
+            }
+            else
+            {
+                return "Can't delete if the category has a course.";
+            }
+        }
     }
 }

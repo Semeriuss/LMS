@@ -21,10 +21,14 @@ namespace CourseLibrary.API.Services
         void UpdateAuthor(Author author);
         bool AuthorExists(Guid authorId);
         bool Save();
+
+        //Category
+        IEnumerable<Category> GetCatagories(Guid courseId);
         bool CategoryExists(Guid categoryId);
-        object GetCategory(Guid categoryId);
-        void AddCategory(Guid categoryId, object categoryEntity);
-        void UpdateCategory(object categoryForCourseFromRepo);
-        void DeleteCategory(object categoryForCourseFromRepo);
+        Category GetCategory(Guid categoryId);
+        void AddCategory(Guid categoryId, Category category);
+        void UpdateCategory(Category category);
+        string DeleteCategory(Category category);
+       
     }
 }

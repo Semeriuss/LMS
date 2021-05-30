@@ -9,7 +9,7 @@ namespace CourseLibrary.API.Entities
     public class Category
     {
         [Key]
-        public Guid CatagoryId { get; set; }
+        public Guid categoryId { get; set; }
 
         [Required]
         [MaxLength(100)]
