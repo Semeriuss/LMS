@@ -186,7 +186,7 @@ namespace CourseLibrary.API.Services
             }
         }
         //Category
-        public IEnumerable<Category> GetCatagories(Guid courseId)
+        public IEnumerable<Category> GetCategories(Guid courseId)
         {
             if (courseId == Guid.Empty)
             {
@@ -194,10 +194,10 @@ namespace CourseLibrary.API.Services
             }
 
             return _context.Categories
-                        .Where(c => c.courseId == courseId)
+                        .Where(c => c.CourseId == courseId)
                         .OrderBy(c => c.Title).ToList();
         }
-        public Course GetCategory(Guid categoryId)
+        public Category GetCategory(Guid categoryId)
         {
             if (categoryId == Guid.Empty)
             {
@@ -208,35 +208,51 @@ namespace CourseLibrary.API.Services
               .Where(c => c.categoryId == categoryId).FirstOrDefault();
         }
 
-        public void AddCategory(Guid categoryId, Category category)
+        public void AddCategory(Category category)
         {
-            if (categoryId == Guid.Empty)
-            {
-                throw new ArgumentNullException(nameof(categoryId));
-            }
+  
 
             if (category == null)
             {
                 throw new ArgumentNullException(nameof(category));
             }
             
-            category.categoryId = categoryId;
+            category.categoryId = Guid.NewGuid();
             _context.Categories.Add(category);
         }
         public void UpdateCategory(Category category)
         {
             // no code in this implementation
         }
-        public string DeleteCategory(Category category)
+        public void DeleteCategory(Category category)
         {
             if (category == null)
             {
                 _context.Categories.Remove(category);
             }
-            else
+            //else
+            //{
+            //    return "can't delete if the category has a course.";
+            //}
+        }
+
+        public bool CategoryExists(Guid categoryId)
+        {
+            if (categoryId == Guid.Empty)
             {
-                return "Can't delete if the category has a course.";
+                throw new ArgumentNullException(nameof(categoryId));
             }
+
+            return _context.Authors.Any(a => a.Id == categoryId);
+        }
+        public bool CourseExists(Guid CourseId)
+        {
+            if (CourseId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(CourseId));
+            }
+
+            return _context.Authors.Any(a => a.Id == CourseId);
         }
     }
 }

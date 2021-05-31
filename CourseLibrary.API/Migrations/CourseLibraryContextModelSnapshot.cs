@@ -51,7 +51,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1650, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1650, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -4, 0, 0, 0)),
                             FirstName = "Berry",
                             LastName = "Griffin Beak Eldritch",
                             MainCategory = "Ships"
@@ -59,7 +59,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1668, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1668, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -4, 0, 0, 0)),
                             FirstName = "Nancy",
                             LastName = "Swashbuckler Rye",
                             MainCategory = "Rum"
@@ -67,7 +67,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1701, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1701, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -5, 0, 0, 0)),
                             FirstName = "Eli",
                             LastName = "Ivory Bones Sweet",
                             MainCategory = "Singing"
@@ -75,7 +75,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("102b566b-ba1f-404c-b2df-e2cde39ade09"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1702, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1702, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -5, 0, 0, 0)),
                             FirstName = "Arnold",
                             LastName = "The Unseen Stafford",
                             MainCategory = "Singing"
@@ -83,7 +83,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("5b3621c0-7b12-4e80-9c8b-3398cba7ee05"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1690, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1690, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -5, 0, 0, 0)),
                             FirstName = "Seabury",
                             LastName = "Toxic Reyson",
                             MainCategory = "Maps"
@@ -91,7 +91,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("2aadd2df-7caf-45ab-9355-7f6332985a87"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1723, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1723, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -4, 0, 0, 0)),
                             FirstName = "Rutherford",
                             LastName = "Fearless Cloven",
                             MainCategory = "General debauchery"
@@ -99,7 +99,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("2ee49fe3-edf2-4f91-8409-3eb25ce6ca51"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1721, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1721, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -4, 0, 0, 0)),
                             FirstName = "Atherton",
                             LastName = "Crow Ridley",
                             MainCategory = "Rum"
@@ -107,7 +107,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("71838f8b-6ab3-4539-9e67-4e77b8ede1c0"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1969, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1969, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -4, 0, 0, 0)),
                             FirstName = "Huxford",
                             LastName = "The Hawk Morris",
                             MainCategory = "Maps"
@@ -115,7 +115,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("119f9ccb-149d-4d3c-ad4f-40100f38e918"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1972, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1972, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -5, 0, 0, 0)),
                             FirstName = "Dwennon",
                             LastName = "Rigger Quye",
                             MainCategory = "Maps"
@@ -123,7 +123,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("28c1db41-f104-46e6-8943-d31c0291e0e3"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1982, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1982, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -4, 0, 0, 0)),
                             FirstName = "Rushford",
                             LastName = "Subtle Asema",
                             MainCategory = "Rum"
@@ -131,7 +131,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d94a64c2-2e8f-4162-9976-0ffe03d30767"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1976, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1976, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -4, 0, 0, 0)),
                             FirstName = "Hagley",
                             LastName = "Imposter Grendel",
                             MainCategory = "Singing"
@@ -139,10 +139,65 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("380c2c6b-0d1c-4b82-9d83-3cf635a3e62b"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1977, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1977, 2, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -5, 0, 0, 0)),
                             FirstName = "Mabel",
                             LastName = "Barnacle Grendel",
                             MainCategory = "Maps"
+                        });
+                });
+
+            modelBuilder.Entity("CourseLibrary.API.Entities.Category", b =>
+                {
+                    b.Property<Guid>("categoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("categoryId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            categoryId = new Guid("40ff5488-fdab-45b5-bc3a-14302d598690"),
+                            CourseId = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                            Description = "In this course you'll learn how to calculate favourite pirate songs without sounding like you actually know the words or how to hold a note.",
+                            Title = "Mathematics"
+                        },
+                        new
+                        {
+                            categoryId = new Guid("40ff5488-fdab-45b5-bc3a-14302d598699"),
+                            CourseId = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                            Description = "In this course you'll learn nature and it's science without sounding like you actually know the words or how to hold a note.",
+                            Title = "Natural Science"
+                        },
+                        new
+                        {
+                            categoryId = new Guid("40ff5488-fdab-45b5-bc3a-14302d598698"),
+                            CourseId = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                            Description = "In this course you'll learn the universe and beyond favourite pirate songs without sounding like you actually know the words or how to hold a note.",
+                            Title = "Astronomy"
+                        },
+                        new
+                        {
+                            categoryId = new Guid("40ff5488-fdab-45b5-bc3a-14302d598697"),
+                            CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                            Description = "In this course you'll learn how to program a software without sounding like you actually know the words or how to hold a note.",
+                            Title = "Computer Science"
                         });
                 });
 
@@ -199,6 +254,17 @@ namespace CourseLibrary.API.Migrations
                             Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.",
                             Title = "Singalong Pirate Hits"
                         });
+                });
+
+            modelBuilder.Entity("CourseLibrary.API.Entities.Category", b =>
+                {
+                    b.HasOne("CourseLibrary.API.Entities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("CourseLibrary.API.Entities.Course", b =>

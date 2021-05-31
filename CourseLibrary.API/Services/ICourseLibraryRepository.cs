@@ -23,12 +23,12 @@ namespace CourseLibrary.API.Services
         bool Save();
 
         //Category
-        IEnumerable<Category> GetCatagories(Guid courseId);
+        IEnumerable<Category> GetCategories(Guid courseId);
         bool CategoryExists(Guid categoryId);
         Category GetCategory(Guid categoryId);
-        void AddCategory(Guid categoryId, Category category);
+        void AddCategory(Category category);
         void UpdateCategory(Category category);
-        string DeleteCategory(Category category);
-       
+        void DeleteCategory(Category category);
+        bool CourseExists(Guid courseId);
     }
 }

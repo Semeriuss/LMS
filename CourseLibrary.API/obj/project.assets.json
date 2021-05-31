@@ -5791,19 +5791,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\semer\\.nuget\\packages\\": {}
+    "C:\\Users\\amcha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\CourseLibrary.API.csproj",
+      "projectUniqueName": "C:\\Users\\amcha\\source\\repos\\LMS-project\\CourseLibrary.API\\CourseLibrary.API.csproj",
       "projectName": "CourseLibrary.API",
-      "projectPath": "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\CourseLibrary.API.csproj",
-      "packagesPath": "C:\\Users\\semer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\semer\\source\\repos\\CourseLibrary\\CourseLibrary.API\\obj\\",
+      "projectPath": "C:\\Users\\amcha\\source\\repos\\LMS-project\\CourseLibrary.API\\CourseLibrary.API.csproj",
+      "packagesPath": "C:\\Users\\amcha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\amcha\\source\\repos\\LMS-project\\CourseLibrary.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\semer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\amcha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5882,7 +5882,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

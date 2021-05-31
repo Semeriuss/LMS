@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,5 +18,10 @@ namespace CourseLibrary.API.Entities
 
         [MaxLength(1500)]
         public string Description { get; set; }
+
+        [ForeignKey("CourseId")]
+        public Guid CourseId { get; set; }
+
+        public Course Course { get; set; }
     }
 }
