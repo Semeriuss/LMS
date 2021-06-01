@@ -10,7 +10,7 @@ namespace CourseLibrary.API.Entities
     public class CourseRating
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Range(1, 5)]
         public double Value { get; set; }

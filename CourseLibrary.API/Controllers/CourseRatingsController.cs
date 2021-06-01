@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +30,7 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpGet(Name = "GetRatingOfUser")]
-        public ActionResult<CourseRatingDto> GetRatingOfUser(Guid CourseId, Guid AuthorId)
+        public ActionResult GetRatingOfUser(Guid CourseId, Guid AuthorId)
         {
             if (!_courseLibraryRepository.AuthorExists(AuthorId) || !_courseLibraryRepository.CourseExists(CourseId))
             {
@@ -38,11 +38,12 @@ namespace CourseLibrary.API.Controllers
             }
 
             var ratingsForAuthorFromRepo = _courseLibraryRepository.GetRating(AuthorId, CourseId);
+            double averageRatingForCourseFromRepo = _courseLibraryRepository.GetRatings(CourseId);
             return Ok(_mapper.Map<CourseRatingDto>(ratingsForAuthorFromRepo));
         }
 
-        [HttpGet]
-        public ActionResult<double> GetAverageRating(Guid CourseId)
+        [HttpGet(Name = "GetAverageRating")]
+        public ActionResult GetAverageRating(Guid CourseId)
         {
             if (!_courseLibraryRepository.CourseExists(CourseId))
             {
@@ -50,16 +51,11 @@ namespace CourseLibrary.API.Controllers
             }
 
             double averageRatingForCourseFromRepo = _courseLibraryRepository.GetRatings(CourseId);
-
-            //if (averageRatingForCourseFromRepo == null)
-            //{
-            //    return NotFound();
-            //}
             return Ok(averageRatingForCourseFromRepo);
         }
 
         [HttpPost]
-        public ActionResult<CourseDto> CreateRatingForAuthor(Guid authorId, Guid courseId, CourseRatingForManipulationDto courseRating)
+        public ActionResult<CourseRatingDto> CreateRatingForAuthor(Guid authorId, Guid courseId, [FromBody] CourseRatingForManipulationDto courseRating)
         {
             if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
             {
@@ -70,13 +66,12 @@ namespace CourseLibrary.API.Controllers
             _courseLibraryRepository.AddRating(authorId, courseId, ratingEntity);
             _courseLibraryRepository.Save();
 
-            var ratingsToReturn = _mapper.Map<CourseDto>(ratingEntity);
+            var ratingsToReturn = _mapper.Map<CourseRatingDto>(ratingEntity);
             return CreatedAtRoute("GetRatingOfUser",
                 new { ratingsToReturn.Id, authorId, courseId }, ratingsToReturn);
         }
 
         [HttpPut]
-
         public IActionResult UpdateRatingForAuthor(Guid authorId, Guid courseId, CourseRatingForManipulationDto courseRating)
         {
             if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
@@ -94,13 +89,10 @@ namespace CourseLibrary.API.Controllers
                 _courseLibraryRepository.AddRating(authorId, courseId, ratingToReturn);
                 _courseLibraryRepository.Save();
 
-                return CreatedAtRoute("GetCourseForAuthor",
+                return CreatedAtRoute("GetRatingForUser",
                     new { ratingToReturn.Id, authorId, courseId = ratingToReturn.Id }, ratingToReturn);
             }
 
-            //map the entity to a CourseForUpdateDto
-            //apply the updated field values to that dto
-            //map the CourseForUpdateDto back to an entity
             _mapper.Map(courseRating, ratingForAuthorFromRepo);
 
             _courseLibraryRepository.UpdateRating(ratingForAuthorFromRepo);
@@ -131,13 +123,5 @@ namespace CourseLibrary.API.Controllers
             return NoContent();
 
         }
-        //public override ActionResult ValidationProblem(
-        //    [ActionResultObjectValue] ModelStateDictionary modelStateDictionary)
-        //{
-        //    var options = HttpContext.RequestServices
-        //        .GetRequiredService<IOptions<ApiBehaviorOptions>>();
-
-        //    return (ActionResult)options.Value.InvalidModelStateResponseFactory(ControllerContext);
-        //}
     }
 }

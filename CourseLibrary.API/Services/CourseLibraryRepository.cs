@@ -205,7 +205,9 @@ namespace CourseLibrary.API.Services
                 throw new ArgumentNullException(nameof(courseRating));
             }
             // always set the AuthorId to the passed-in authorId
+            courseRating.Id = Guid.NewGuid(); 
             courseRating.AuthorId = authorId;
+            courseRating.CourseId = courseId;
             _context.CourseRatings.Add(courseRating);
         }
 
@@ -225,10 +227,12 @@ namespace CourseLibrary.API.Services
                         .Where(r => r.CourseId == courseId);
 
             double result = 0;
-            foreach(var rating in ratings)
-            {
-                result += rating.Value;
-            }
+            //foreach(var rating in ratings)
+            //{
+            //    result += rating.Value;
+            //}
+
+            result = (from r in ratings select r.Value).Average();
 
             return result;
         }
