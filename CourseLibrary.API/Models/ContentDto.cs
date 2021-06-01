@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Models
 {
-    public class AuthorDto
+    public class ContentDto
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
-        public int Age { get; set; }
+        public string Type { get; set; }
 
-        public string MainCategory { get; set; }
+        public string Data { get; set; }
     }
 }
