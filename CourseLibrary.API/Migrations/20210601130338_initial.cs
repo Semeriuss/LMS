@@ -60,12 +60,40 @@ namespace CourseLibrary.API.Migrations
                         name: "FK_Content_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Content_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseRatings",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Value = table.Column<double>(type: "float", nullable: false),
+                    CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseRatings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CourseRatings_Authors_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Authors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_CourseRatings_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.InsertData(
@@ -110,6 +138,18 @@ namespace CourseLibrary.API.Migrations
                     { new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b04"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), "Lecture1.mp4", "Dyna", "Video" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "CourseRatings",
+                columns: new[] { "Id", "AuthorId", "CourseId", "Value" },
+                values: new object[,]
+                {
+                    { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), 4.0 },
+                    { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ef"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), 3.0 },
+                    { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad98"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 1.0 },
+                    { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 3.0 },
+                    { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"), 4.0 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Content_AuthorId",
                 table: "Content",
@@ -118,6 +158,16 @@ namespace CourseLibrary.API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Content_CourseId",
                 table: "Content",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseRatings_AuthorId",
+                table: "CourseRatings",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseRatings_CourseId",
+                table: "CourseRatings",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
@@ -130,6 +180,9 @@ namespace CourseLibrary.API.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Content");
+
+            migrationBuilder.DropTable(
+                name: "CourseRatings");
 
             migrationBuilder.DropTable(
                 name: "Courses");

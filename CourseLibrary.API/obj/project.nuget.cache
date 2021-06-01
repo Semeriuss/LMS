@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WEi+rWPJN9QWKMn7xCmuUXx8871MriX4DXhmp04guMQd3MpXMJFjO+lZIJlB0Kr6ea5D2yyjamsh6XHtRT6PkA==",
+  "dgSpecHash": "VZYY/e75cPV00x01+Q0Vfm0dnxEl7fxn7RI1nly1aCkcCF1r8AHFjzvAunCTZT9b2vUR4xmxFtzYKXbN0mwycA==",
   "success": true,
-  "projectFilePath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
+  "projectFilePath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aymenua\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Aymenua\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

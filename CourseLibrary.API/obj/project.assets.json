@@ -5796,11 +5796,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
+      "projectUniqueName": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
       "projectName": "CourseLibrary.API",
-      "projectPath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
+      "projectPath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
       "packagesPath": "C:\\Users\\Aymenua\\.nuget\\packages\\",
-      "outputPath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\PROJECT\\LMS\\CourseLibrary.API\\obj\\",
+      "outputPath": "D:\\School Stuff\\3rd Year - 1st Sem\\Object-Oriented Programming II\\LMS\\CourseLibrary.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Aymenua\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5882,7 +5882,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

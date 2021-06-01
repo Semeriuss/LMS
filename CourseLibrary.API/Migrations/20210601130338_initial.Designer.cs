@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseLibrary.API.Migrations
 {
     [DbContext(typeof(CourseLibraryContext))]
-    [Migration("20210528092508_initial")]
+    [Migration("20210601130338_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -286,6 +286,67 @@ namespace CourseLibrary.API.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CourseLibrary.API.Entities.CourseRating", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Value")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseRatings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"),
+                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CourseId = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
+                            Value = 4.0
+                        },
+                        new
+                        {
+                            Id = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ef"),
+                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                            Value = 3.0
+                        },
+                        new
+                        {
+                            Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad98"),
+                            AuthorId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                            CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
+                            Value = 1.0
+                        },
+                        new
+                        {
+                            Id = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"),
+                            AuthorId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
+                            CourseId = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                            Value = 4.0
+                        },
+                        new
+                        {
+                            Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"),
+                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
+                            Value = 3.0
+                        });
+                });
+
             modelBuilder.Entity("CourseLibrary.API.Entities.Content", b =>
                 {
                     b.HasOne("CourseLibrary.API.Entities.Author", "Author")
@@ -314,6 +375,25 @@ namespace CourseLibrary.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("CourseLibrary.API.Entities.CourseRating", b =>
+                {
+                    b.HasOne("CourseLibrary.API.Entities.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourseLibrary.API.Entities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("CourseLibrary.API.Entities.Author", b =>

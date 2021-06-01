@@ -29,5 +29,12 @@ namespace CourseLibrary.API.Services
         void AddContent(Guid authorId, Guid courseId, Content content);
         void UpdateContent(Content content);
         void DeleteContent(Content content);
+
+        // Rating
+        CourseRating GetRating(Guid authorId, Guid courseId);
+        void AddRating(Guid authorId, Guid courseId, CourseRating courseRating);
+        void DeleteRating(CourseRating courseRating);
+        double GetRatings(Guid courseId);
+        void UpdateRating(CourseRating courseRating);
     }
 }
