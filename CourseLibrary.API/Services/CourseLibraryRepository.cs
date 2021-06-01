@@ -279,7 +279,7 @@ namespace CourseLibrary.API.Services
 
         // RATING
 
-        public CourseRating GetRating(Guid authorId, Guid courseId)
+        public CourseRating GetRating(Guid authorId, Guid courseId, Guid ratingId)
         {
             if (authorId == Guid.Empty)
             {
@@ -292,7 +292,7 @@ namespace CourseLibrary.API.Services
             }
 
             return _context.CourseRatings
-              .Where(r => r.AuthorId == authorId && r.CourseId == courseId).FirstOrDefault();
+              .Where(r => r.AuthorId == authorId && r.CourseId == courseId && r.Id == ratingId).FirstOrDefault();
         }
 
         public bool CourseRatingExists(Guid courseId)

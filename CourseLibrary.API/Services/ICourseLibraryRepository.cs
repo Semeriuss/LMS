@@ -31,7 +31,7 @@ namespace CourseLibrary.API.Services
         void DeleteContent(Content content);
 
         // Rating
-        CourseRating GetRating(Guid authorId, Guid courseId);
+        CourseRating GetRating(Guid authorId, Guid courseId, Guid ratingId);
         void AddRating(Guid authorId, Guid courseId, CourseRating courseRating);
         void DeleteRating(CourseRating courseRating);
         double GetRatings(Guid courseId);
