@@ -61,7 +61,7 @@ namespace CourseLibrary.API.Migrations
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Content_Courses_CourseId",
                         column: x => x.CourseId,
@@ -143,11 +143,11 @@ namespace CourseLibrary.API.Migrations
                 columns: new[] { "Id", "AuthorId", "CourseId", "Value" },
                 values: new object[,]
                 {
-                    { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), 4.0 },
                     { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ef"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), 3.0 },
+                    { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), 4.0 },
+                    { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 4.0 },
                     { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad98"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 1.0 },
-                    { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 3.0 },
-                    { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"), 4.0 }
+                    { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 3.0 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -45,7 +45,7 @@ namespace CourseLibrary.API.Controllers
         [HttpGet(Name = "GetAverageRating")]
         public ActionResult GetAverageRating(Guid CourseId)
         {
-            if (!_courseLibraryRepository.CourseExists(CourseId))
+            if (!_courseLibraryRepository.CourseExists(CourseId) || !_courseLibraryRepository.CourseRatingExists(CourseId))
             {
                 return NotFound();
             }

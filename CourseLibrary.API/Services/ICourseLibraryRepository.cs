@@ -36,5 +36,6 @@ namespace CourseLibrary.API.Services
         void DeleteRating(CourseRating courseRating);
         double GetRatings(Guid courseId);
         void UpdateRating(CourseRating courseRating);
+        bool CourseRatingExists(Guid courseId);
     }
 }

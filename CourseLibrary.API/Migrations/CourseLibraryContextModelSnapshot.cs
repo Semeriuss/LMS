@@ -312,7 +312,7 @@ namespace CourseLibrary.API.Migrations
                         {
                             Id = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"),
                             AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
-                            CourseId = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
+                            CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                             Value = 4.0
                         },
                         new
@@ -333,7 +333,7 @@ namespace CourseLibrary.API.Migrations
                         {
                             Id = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"),
                             AuthorId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
-                            CourseId = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                            CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                             Value = 4.0
                         },
                         new

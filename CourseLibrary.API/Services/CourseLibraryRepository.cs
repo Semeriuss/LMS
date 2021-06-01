@@ -295,7 +295,16 @@ namespace CourseLibrary.API.Services
               .Where(r => r.AuthorId == authorId && r.CourseId == courseId).FirstOrDefault();
         }
 
-        public void AddRating(Guid authorId, Guid courseId, CourseRating courseRating)
+        public bool CourseRatingExists(Guid courseId)
+        {
+            if (courseId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(courseId));
+            }
+
+            return _context.CourseRatings.Any(a => a.CourseId == courseId);
+        }
+            public void AddRating(Guid authorId, Guid courseId, CourseRating courseRating)
         {
             if (authorId == Guid.Empty)
             {
