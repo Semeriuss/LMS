@@ -65,9 +65,9 @@ namespace CourseLibrary.API.Controllers
             _courseLibraryRepository.AddRating(authorId, courseId, ratingEntity);
             _courseLibraryRepository.Save();
 
-            var ratingsToReturn = _mapper.Map<CourseRatingDto>(ratingEntity);
+            var ratingToReturn = _mapper.Map<CourseRatingDto>(ratingEntity);
             return CreatedAtRoute("GetRatingOfUser",
-                new { ratingsToReturn.Id, authorId = authorId, courseId = courseId }, ratingsToReturn);
+                new { courseId, authorId, ratingId = ratingToReturn.Id }, ratingToReturn);
         }
 
         [HttpPut("{ratingId}")]
