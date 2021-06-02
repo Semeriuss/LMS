@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj": {}
+    "/Users/morty/Documents/projects/LMS/CourseLibrary.API/CourseLibrary.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj": {
+    "/Users/morty/Documents/projects/LMS/CourseLibrary.API/CourseLibrary.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
+        "projectUniqueName": "/Users/morty/Documents/projects/LMS/CourseLibrary.API/CourseLibrary.API.csproj",
         "projectName": "CourseLibrary.API",
-        "projectPath": "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
-        "packagesPath": "C:\\Users\\semer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\CourseLibrary.API\\obj\\",
+        "projectPath": "/Users/morty/Documents/projects/LMS/CourseLibrary.API/CourseLibrary.API.csproj",
+        "packagesPath": "/Users/morty/.nuget/packages/",
+        "outputPath": "/Users/morty/Documents/projects/LMS/CourseLibrary.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\semer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/morty/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,6 +46,10 @@
               "target": "Package",
               "version": "[27.0.4, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
             "Microsoft.AspNetCore.JsonPatch": {
               "target": "Package",
               "version": "[5.0.6, )"
@@ -57,6 +59,10 @@
               "version": "[5.0.6, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Analyzers": {
               "target": "Package",
               "version": "[5.0.6, )"
             },
@@ -97,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }
