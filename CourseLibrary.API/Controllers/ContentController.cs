@@ -11,6 +11,7 @@ namespace CourseLibrary.API.Controllers
 {
     [ApiController]
     [Route("api/authors/{authorId}/courses/{courseId}/content")]
+
     public class ContentController : ControllerBase
     {
         private readonly ICourseLibraryRepository _courseLibraryRepository;
