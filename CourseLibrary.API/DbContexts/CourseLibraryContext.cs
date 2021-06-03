@@ -17,6 +17,7 @@ namespace CourseLibrary.API.DbContexts
         public DbSet<Content> Content { get; set; }
         public DbSet<CourseRating> CourseRatings { get; set; }
         public DbSet<Resource> Resources { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -239,7 +240,8 @@ namespace CourseLibrary.API.DbContexts
                     Value = 3
                 }
             );
-                        modelBuilder.Entity<Resource>().HasData(
+
+            modelBuilder.Entity<Resource>().HasData(
                 new Resource()
                 {
                     FileName = "Test",
@@ -247,7 +249,39 @@ namespace CourseLibrary.API.DbContexts
                     ContentId = new Guid(),
                     Id = Guid.Parse("d28898e9-2ba9-473a-a40f-e38cd54f9b35")
                 }
-               );
+            );
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d598690"),
+                    CourseId = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                    Title = "Mathematics",
+                    Description = "In this course you'll learn how to calculate favourite pirate songs without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d598699"),
+                    CourseId = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                    Title = "Natural Science",
+                    Description = "In this course you'll learn nature and it's science without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d598698"),
+                    CourseId = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869a"),
+                    Title = "Astronomy",
+                    Description = "In this course you'll learn the universe and beyond favourite pirate songs without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d598697"),
+                    CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                    Title = "Computer Science",
+                    Description = "In this course you'll learn how to program a software without sounding like you actually know the words or how to hold a note."
+                }
+            );
+
 
             base.OnModelCreating(modelBuilder);
         }

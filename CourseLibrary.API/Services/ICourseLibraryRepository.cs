@@ -40,5 +40,13 @@ namespace CourseLibrary.API.Services
 
         // Resources
         void AddResources(Resource res);
+
+        //Category
+        IEnumerable<Category> GetCategories(Guid courseId);
+        bool CategoryExists(Guid categoryId);
+        Category GetCategory(Guid categoryId);
+        void AddCategory(Category category);
+        void UpdateCategory(Category category);
+        void DeleteCategory(Category category);
     }
 }
