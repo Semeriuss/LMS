@@ -16,10 +16,14 @@ namespace CourseLibrary.API.DbContexts
         public DbSet<Course> Courses { get; set; }
         public DbSet<Content> Content { get; set; }
         public DbSet<CourseRating> CourseRatings { get; set; }
+        public DbSet<Resource> Resources { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-             // seed the database with dummy data
+            // seed the database with dummy data
+
+
+            
             modelBuilder.Entity<Author>().HasData(
                 new Author()
                 {
@@ -235,6 +239,15 @@ namespace CourseLibrary.API.DbContexts
                     Value = 3
                 }
             );
+                        modelBuilder.Entity<Resource>().HasData(
+                new Resource()
+                {
+                    FileName = "Test",
+                    FilePath = "apathsubpath",
+                    ContentId = new Guid(),
+                    Id = Guid.Parse("d28898e9-2ba9-473a-a40f-e38cd54f9b35")
+                }
+               );
 
             base.OnModelCreating(modelBuilder);
         }

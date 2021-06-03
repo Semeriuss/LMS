@@ -17,12 +17,10 @@ namespace CourseLibrary.API.Entities
 
         [ForeignKey("CourseId")]
         public Course Course { get; set; }
-
         public Guid CourseId { get; set; }
 
         [ForeignKey("AuthorId")]
         public Author Author { get; set; }
-
         public Guid AuthorId { get; set; }
 
     }

@@ -6205,26 +6205,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\semer\\.nuget\\packages\\": {}
+    "/Users/morty/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
+      "projectUniqueName": "/Users/morty/Documents/projects/LMS/CourseLibrary.API/CourseLibrary.API.csproj",
       "projectName": "CourseLibrary.API",
-      "projectPath": "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\LMS\\CourseLibrary.API\\CourseLibrary.API.csproj",
-      "packagesPath": "C:\\Users\\semer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\semer\\Documents\\Academia\\OOP II\\Projects\\LMS\\LMS\\CourseLibrary.API\\obj\\",
+      "projectPath": "/Users/morty/Documents/projects/LMS/CourseLibrary.API/CourseLibrary.API.csproj",
+      "packagesPath": "/Users/morty/.nuget/packages/",
+      "outputPath": "/Users/morty/Documents/projects/LMS/CourseLibrary.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\semer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/morty/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6312,7 +6310,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -132,11 +132,9 @@ namespace CourseLibrary.API
                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
                         var userId = int.Parse(context.Principal.Identity.Name);
                         var user = userService.GetById(userId);
-                        Console.WriteLine("User >>> ", user.FirstName);
 
                         if (user == null)
                         {
-                            Console.WriteLine("unauthorized");
                             // return unauthorized if user no longer exists
                             context.Fail("Unauthorized");
                         }
@@ -159,6 +157,7 @@ namespace CourseLibrary.API
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICourseLibraryRepository, CourseLibraryRepository>();
+            services.AddScoped<IResourcesRepository, ResourceRepository>();
 
             services.AddSwaggerGen(c =>
             {

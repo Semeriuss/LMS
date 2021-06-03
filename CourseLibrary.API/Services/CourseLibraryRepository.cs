@@ -352,5 +352,10 @@ namespace CourseLibrary.API.Services
         {
             // No implementation
         }
+
+        public void AddResources(Resource res)
+        {
+            _context.Resources.Add(res);
+        }
     }
 }

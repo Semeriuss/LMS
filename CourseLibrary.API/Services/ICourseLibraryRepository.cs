@@ -37,5 +37,8 @@ namespace CourseLibrary.API.Services
         double GetRatings(Guid courseId);
         void UpdateRating(CourseRating courseRating);
         bool CourseRatingExists(Guid courseId);
+
+        // Resources
+        void AddResources(Resource res);
     }
 }
