@@ -2,7 +2,7 @@
 using CourseLibrary.API.Helpers;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.ResourceParameters;
-using CourseLibrary.API.Services;
+using CourseLibrary.API.Services.AuthorService;
 using CsvHelper.Configuration.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,12 +16,12 @@ namespace CourseLibrary.API.Controllers
     [Route("api/authors")]
     public class AuthorsController : ControllerBase
     {
-        private readonly ICourseLibraryRepository _courseLibraryRepository;
+        private readonly IAuthorRepository _authorRepository;
         private readonly IMapper _mapper;
-        public AuthorsController(ICourseLibraryRepository courseLibraryRepository, IMapper mapper)
+        public AuthorsController(IAuthorRepository authorRepository, IMapper mapper)
         {
-            _courseLibraryRepository = courseLibraryRepository ??
-                throw new ArgumentNullException(nameof(courseLibraryRepository));
+            _authorRepository = authorRepository ??
+                throw new ArgumentNullException(nameof(authorRepository));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
         }
@@ -31,7 +31,7 @@ namespace CourseLibrary.API.Controllers
         public ActionResult<IEnumerable<AuthorDto>> GetAuthors(
             [FromQuery] AuthorsResourceParameters authorsResourceParameters)
         {
-            var authorsFromRepo = _courseLibraryRepository.GetAuthors(authorsResourceParameters);
+            var authorsFromRepo = _authorRepository.GetAuthors(authorsResourceParameters);
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
 
@@ -39,7 +39,7 @@ namespace CourseLibrary.API.Controllers
         public IActionResult GetAuthor(Guid authorId)
         {
 
-            var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
+            var authorFromRepo = _authorRepository.GetAuthor(authorId);
 
             if (authorFromRepo == null)
             {
@@ -53,8 +53,8 @@ namespace CourseLibrary.API.Controllers
         public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author)
         {
             var authorEntity = _mapper.Map<Entities.Author>(author);
-            _courseLibraryRepository.AddAuthor(authorEntity);
-            _courseLibraryRepository.Save();
+            _authorRepository.AddAuthor(authorEntity);
+            _authorRepository.Save();
 
             var authorToReturn = _mapper.Map<AuthorDto>(authorEntity);
             return CreatedAtRoute("GetAuthor",
@@ -74,15 +74,15 @@ namespace CourseLibrary.API.Controllers
         public ActionResult DeleteCourseForAuthor(Guid authorId)
         {
 
-            var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
+            var authorFromRepo = _authorRepository.GetAuthor(authorId);
 
             if (authorFromRepo == null)
             {
                 return NotFound();
             }
 
-            _courseLibraryRepository.DeleteAuthor(authorFromRepo);
-            _courseLibraryRepository.Save();
+            _authorRepository.DeleteAuthor(authorFromRepo);
+            _authorRepository.Save();
 
             return NoContent();
 

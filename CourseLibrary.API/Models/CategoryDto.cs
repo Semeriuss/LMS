@@ -7,7 +7,7 @@ namespace CourseLibrary.API.Models
 {
     public class CategoryDto
     {
-        public Guid CategoryId { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; }
 

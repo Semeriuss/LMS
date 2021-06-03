@@ -18,10 +18,5 @@ namespace CourseLibrary.API.Entities
 
         [MaxLength(1500)]
         public string Description { get; set; }
-
-        [ForeignKey("CourseId")]
-        public Guid CourseId { get; set; }
-
-        public Course Course { get; set; }
     }
 }

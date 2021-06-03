@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseLibrary.API.Migrations.User
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210601223304_user")]
-    partial class user
+    [Migration("20210603082904_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

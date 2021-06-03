@@ -48,7 +48,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1650, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 28, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1650, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             FirstName = "Berry",
                             LastName = "Griffin Beak Eldritch",
                             MainCategory = "Ships"
@@ -56,7 +56,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1668, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 28, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1668, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             FirstName = "Nancy",
                             LastName = "Swashbuckler Rye",
                             MainCategory = "Rum"
@@ -64,7 +64,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1701, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 28, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1701, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             FirstName = "Eli",
                             LastName = "Ivory Bones Sweet",
                             MainCategory = "Singing"
@@ -72,7 +72,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("102b566b-ba1f-404c-b2df-e2cde39ade09"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1702, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 28, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1702, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             FirstName = "Arnold",
                             LastName = "The Unseen Stafford",
                             MainCategory = "Singing"
@@ -80,7 +80,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("5b3621c0-7b12-4e80-9c8b-3398cba7ee05"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1690, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 28, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1690, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             FirstName = "Seabury",
                             LastName = "Toxic Reyson",
                             MainCategory = "Maps"
@@ -88,7 +88,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("2aadd2df-7caf-45ab-9355-7f6332985a87"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1723, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 28, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1723, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             FirstName = "Rutherford",
                             LastName = "Fearless Cloven",
                             MainCategory = "General debauchery"
@@ -96,7 +96,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("2ee49fe3-edf2-4f91-8409-3eb25ce6ca51"),
-                            DateOfBirth = new DateTimeOffset(new DateTime(1721, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 28, 0, 0)),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1721, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             FirstName = "Atherton",
                             LastName = "Crow Ridley",
                             MainCategory = "Rum"
@@ -143,13 +143,59 @@ namespace CourseLibrary.API.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CourseLibrary.API.Entities.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1500)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            Description = "In this course you'll learn how to calculate favourite pirate songs without sounding like you actually know the words or how to hold a note.",
+                            Title = "Mathematics"
+                        },
+                        new
+                        {
+                            Id = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                            Description = "In this course you'll learn nature and it's science without sounding like you actually know the words or how to hold a note.",
+                            Title = "Natural Science"
+                        },
+                        new
+                        {
+                            Id = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
+                            Description = "In this course you'll learn the universe and beyond favourite pirate songs without sounding like you actually know the words or how to hold a note.",
+                            Title = "Astronomy"
+                        },
+                        new
+                        {
+                            Id = new Guid("102b566b-ba1f-404c-b2df-e2cde39ade09"),
+                            Description = "In this course you'll learn how to program a software without sounding like you actually know the words or how to hold a note.",
+                            Title = "Computer Science"
+                        });
+                });
+
             modelBuilder.Entity("CourseLibrary.API.Entities.Content", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("AuthorId")
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CourseId")
@@ -172,7 +218,7 @@ namespace CourseLibrary.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CourseId");
 
@@ -182,7 +228,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b00"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                             Data = "Lecture1.mp4",
                             Title = "OOP II",
@@ -191,7 +237,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b01"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                             Data = "Lecture1.mp4",
                             Title = "Web",
@@ -200,7 +246,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b02"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                             Data = "Lecture1.mp4",
                             Title = "System",
@@ -209,7 +255,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b03"),
-                            AuthorId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                            CategoryId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                             CourseId = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                             Data = "Lecture1.mp4",
                             Title = "DLD",
@@ -218,7 +264,7 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b04"),
-                            AuthorId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
+                            CategoryId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
                             CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                             Data = "Lecture1.mp4",
                             Title = "Dyna",
@@ -232,7 +278,10 @@ namespace CourseLibrary.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("AuthorId")
+                    b.Property<Guid?>("AuthorId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -248,34 +297,36 @@ namespace CourseLibrary.API.Migrations
 
                     b.HasIndex("AuthorId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Courses");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             Description = "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers.",
                             Title = "Commandeering a Ship Without Getting Caught"
                         },
                         new
                         {
                             Id = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             Description = "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny.",
                             Title = "Overthrowing Mutiny"
                         },
                         new
                         {
                             Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
-                            AuthorId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                            CategoryId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                             Description = "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk.",
                             Title = "Avoiding Brawls While Drinking as Much Rum as You Desire"
                         },
                         new
                         {
                             Id = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"),
-                            AuthorId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
+                            CategoryId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
                             Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.",
                             Title = "Singalong Pirate Hits"
                         });
@@ -287,7 +338,7 @@ namespace CourseLibrary.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("AuthorId")
+                    b.Property<Guid>("CategoryId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CourseId")
@@ -298,7 +349,7 @@ namespace CourseLibrary.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CourseId");
 
@@ -308,35 +359,35 @@ namespace CourseLibrary.API.Migrations
                         new
                         {
                             Id = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                             Value = 4.0
                         },
                         new
                         {
                             Id = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ef"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                             Value = 3.0
                         },
                         new
                         {
                             Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad98"),
-                            AuthorId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                            CategoryId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                             CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                             Value = 1.0
                         },
                         new
                         {
                             Id = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"),
-                            AuthorId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
+                            CategoryId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
                             CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                             Value = 4.0
                         },
                         new
                         {
                             Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"),
-                            AuthorId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                            CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                             Value = 3.0
                         });
@@ -373,9 +424,9 @@ namespace CourseLibrary.API.Migrations
 
             modelBuilder.Entity("CourseLibrary.API.Entities.Content", b =>
                 {
-                    b.HasOne("CourseLibrary.API.Entities.Author", "Author")
+                    b.HasOne("CourseLibrary.API.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -385,27 +436,31 @@ namespace CourseLibrary.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
+                    b.Navigation("Category");
 
                     b.Navigation("Course");
                 });
 
             modelBuilder.Entity("CourseLibrary.API.Entities.Course", b =>
                 {
-                    b.HasOne("CourseLibrary.API.Entities.Author", "Author")
+                    b.HasOne("CourseLibrary.API.Entities.Author", null)
                         .WithMany("Courses")
-                        .HasForeignKey("AuthorId")
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("CourseLibrary.API.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("CourseLibrary.API.Entities.CourseRating", b =>
                 {
-                    b.HasOne("CourseLibrary.API.Entities.Author", "Author")
+                    b.HasOne("CourseLibrary.API.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -415,7 +470,7 @@ namespace CourseLibrary.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
+                    b.Navigation("Category");
 
                     b.Navigation("Course");
                 });

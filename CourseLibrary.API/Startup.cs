@@ -129,7 +129,7 @@ namespace CourseLibrary.API
                 {
                     OnTokenValidated = context =>
                     {
-                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        var userService = context.HttpContext.RequestServices.GetRequiredService<Services.UserService.IUserService>();
                         var userId = int.Parse(context.Principal.Identity.Name);
                         var user = userService.GetById(userId);
 
@@ -153,11 +153,15 @@ namespace CourseLibrary.API
             });
 
             // configure DI for application services
-            services.AddScoped<IUserService, UserService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<ICourseLibraryRepository, CourseLibraryRepository>();
-            services.AddScoped<IResourcesRepository, ResourceRepository>();
+            services.AddScoped<Services.AuthorService.IAuthorRepository, Services.AuthorService.AuthorRepository>();
+            services.AddScoped<Services.CategoryService.ICategoryRepository, Services.CategoryService.CategoryRepository>();
+            services.AddScoped<Services.ContentService.IContentRepository, Services.ContentService.ContentRepository>();
+            services.AddScoped<Services.CourseService.ICourseRepository, Services.CourseService.CourseRepository>();
+            services.AddScoped<Services.RatingService.IRatingRepository, Services.RatingService.RatingRepository>();
+            services.AddScoped<Services.ResourcesService.IResourcesRepository, Services.ResourcesService.ResourceRepository>();
+            services.AddScoped<Services.UserService.IUserService, Services.UserService.UserService>();
 
             services.AddSwaggerGen(c =>
             {

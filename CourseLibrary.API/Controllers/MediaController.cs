@@ -2,7 +2,7 @@
 using CourseLibrary.API.Entities;
 using CourseLibrary.API.Helpers;
 using CourseLibrary.API.Models;
-using CourseLibrary.API.Services;
+using CourseLibrary.API.Services.ResourcesService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,14 +15,14 @@ using System.Threading.Tasks;
 [Route("api/videos")]
 public class VideosController : ControllerBase
 {
-    private readonly ICourseLibraryRepository _courseLibraryRepository;
+    private readonly IResourcesRepository _resourceRepository;
     private readonly IMapper _mapper;
     private string pathForFiles = Environment.CurrentDirectory + "/" + "FileStorage";
 
-    public VideosController(ICourseLibraryRepository courseLibraryRepository, IMapper mapper)
+    public VideosController(IResourcesRepository resourcesRepository, IMapper mapper)
     {
-        _courseLibraryRepository = courseLibraryRepository ??
-            throw new ArgumentNullException(nameof(courseLibraryRepository));
+        _resourceRepository = resourcesRepository ??
+            throw new ArgumentNullException(nameof(resourcesRepository));
         _mapper = mapper ??
             throw new ArgumentNullException(nameof(mapper));
     }
@@ -51,7 +51,7 @@ public class VideosController : ControllerBase
             Id = new Guid()
         };
 
-        await Task.Run(() => _courseLibraryRepository.AddResources(resource)); 
+        await Task.Run(() => _resourceRepository.AddResources(resource)); 
 
         using (var stream = System.IO.File.Create(resource.FilePath))
         {

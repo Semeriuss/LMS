@@ -1,7 +1,7 @@
 using AutoMapper;
 using CourseLibrary.API.Entities;
 using CourseLibrary.API.Models;
-using CourseLibrary.API.Services;
+using CourseLibrary.API.Services.CategoryService;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -20,109 +20,102 @@ namespace CourseLibrary.API.Controllers
     [Route("api/category")]
     public class CategoryController:ControllerBase
     {   
-        private readonly ICourseLibraryRepository _courseLibraryRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
-        public CategoryController(ICourseLibraryRepository courseLibraryRepository, IMapper mapper)
+        public CategoryController(ICategoryRepository categoryRepository, IMapper mapper)
         {
-            _courseLibraryRepository = courseLibraryRepository ??
-                throw new ArgumentNullException(nameof(courseLibraryRepository));
+            _categoryRepository = categoryRepository ??
+                throw new ArgumentNullException(nameof(categoryRepository));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
         }
-        [HttpGet("{CourseId}")]
-        public ActionResult<IEnumerable<CategoryDto>> GetCategoryForCourse(Guid CourseId)
-        {   
-            if (!_courseLibraryRepository.CourseExists(CourseId))
+
+        [HttpGet]
+        public ActionResult<IEnumerable<CategoryDto>> GetCategories()
+        {
+            var categoriesFromRepo = _categoryRepository.GetCategories();
+            return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categoriesFromRepo));
+        }
+
+        [HttpGet("{categoryId}", Name = "GetCategory")]
+        public IActionResult GetCategory(Guid categoryId)
+        {
+            if (!_categoryRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
+            var categoryFromRepo = _categoryRepository.GetCategory(categoryId);
 
-            var catagoryFromRepo = _courseLibraryRepository.GetCategory(CourseId);
-            return Ok(_mapper.Map<IEnumerable<CategoryDto>>(catagoryFromRepo));
+            if (categoryFromRepo == null)
+            {
+                return NotFound();
+            }  
+
+            return Ok(_mapper.Map<AuthorDto>(categoryFromRepo));
         }
-        //[HttpGet("{CategoryId}", Name = "GetCategoryForCourse")]
-        //public ActionResult<IEnumerable<CategoryDto>> GetCategoryForCourse(Guid CategoryId)
-        //{
-        //    if (!_courseLibraryRepository.CategoryExists(CategoryId))
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var categoryFromRepo = _courseLibraryRepository.GetCategory(CategoryId);
-        //    if (categoryFromRepo == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(_mapper.Map<CategoryDto>(categoryFromRepo));
-        //}
 
         [HttpPost]
-        public ActionResult<CategoryDto> CreateNewCategory(Guid CategoryId, CategoryForCreationDto category)
+        public ActionResult<CategoryDto> CreateCategory(CategoryForCreationDto category)
         {   
-            if (!_courseLibraryRepository.CategoryExists(CategoryId))
-            {
-                return NotFound();
-            }
-
             var categoryEntity = _mapper.Map<Entities.Category>(category);
-            _courseLibraryRepository.AddCategory(categoryEntity);
-            _courseLibraryRepository.Save();
+            _categoryRepository.AddCategory(categoryEntity);
+            _categoryRepository.Save();
 
             var categoryToReturn = _mapper.Map<CategoryDto>(categoryEntity);
-            return CreatedAtRoute("GetCatagoryForCourse",
-                new { CategoryId = categoryToReturn.CategoryId }, categoryToReturn);
+            return CreatedAtRoute("GetCategory",
+                new { CategoryId = categoryToReturn.Id }, categoryToReturn);
         }
-        [HttpPut("{CategoryId}")]
 
-        public IActionResult UpdateCategoryForCourse(Guid CategoryId, CategoryForUpdateDto category)
+        [HttpPut("{categoryId}")]
+        public IActionResult UpdateCategory(Guid CategoryId, CategoryForUpdateDto category)
         {
-            if (!_courseLibraryRepository.CategoryExists(CategoryId))
+            if (!_categoryRepository.CategoryExists(CategoryId))
             {
                 return NotFound();
             }
 
-            var categoryForCourseFromRepo = _courseLibraryRepository.GetCategory(CategoryId);
+            var categoryFromRepo = _categoryRepository.GetCategory(CategoryId);
 
-            if (categoryForCourseFromRepo == null)
+            if (categoryFromRepo == null)
             {
                 var categoryToReturn = _mapper.Map<Entities.Category>(category);
-                categoryToReturn.categoryId = CategoryId;
+                categoryToReturn.Id = CategoryId;
 
-                _courseLibraryRepository.AddCategory(categoryToReturn);
-                _courseLibraryRepository.Save();
+                _categoryRepository.AddCategory(categoryToReturn);
+                _categoryRepository.Save();
 
-                return CreatedAtRoute("GetCategoryForCourse",
-                    new { CategoryId = categoryToReturn.categoryId }, categoryToReturn);
+                return CreatedAtRoute("GetCategory",
+                    new { CategoryId = categoryToReturn.Id }, categoryToReturn);
             }
 
             //map the entity to a CourseForUpdateDto
             //apply the updated field values to that dto
             //map the CourseForUpdateDto back to an entity
-            _mapper.Map(category, categoryForCourseFromRepo);
+            _mapper.Map(category, categoryFromRepo);
 
-            _courseLibraryRepository.UpdateCategory(categoryForCourseFromRepo);
+            _categoryRepository.UpdateCategory(categoryFromRepo);
 
-            _courseLibraryRepository.Save();
+            _categoryRepository.Save();
             return NoContent();
         }
-        [HttpDelete]
-        public ActionResult DeleteACategory(Guid CategoryId)
+
+        [HttpDelete("{categoryId}")]
+        public ActionResult DeleteCategory(Guid categoryId)
         {
-            if (!_courseLibraryRepository.CategoryExists(CategoryId))
+            if (!_categoryRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
 
-            var categoryForCourseFromRepo = _courseLibraryRepository.GetCategory(CategoryId);
+            var categoryFromRepo = _categoryRepository.GetCategory(categoryId);
 
-            if (categoryForCourseFromRepo == null)
+            if (categoryFromRepo == null)
             {
                 return NotFound();
             }
 
-            _courseLibraryRepository.DeleteCategory(categoryForCourseFromRepo);
-            _courseLibraryRepository.Save();
+            _categoryRepository.DeleteCategory(categoryFromRepo);
+            _categoryRepository.Save();
 
             return NoContent();
 

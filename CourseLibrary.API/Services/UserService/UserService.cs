@@ -10,7 +10,7 @@ using CourseLibrary.API.Helpers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CourseLibrary.API.Services
+namespace CourseLibrary.API.Services.UserService
 {
 
     public class UserService : IUserService
