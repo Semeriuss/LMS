@@ -51,7 +51,7 @@ namespace CourseLibrary.API.Controllers
                 return NotFound();
             }  
 
-            return Ok(_mapper.Map<AuthorDto>(categoryFromRepo));
+            return Ok(_mapper.Map<CategoryDto>(categoryFromRepo));
         }
 
         [HttpPost]
@@ -88,9 +88,6 @@ namespace CourseLibrary.API.Controllers
                     new { CategoryId = categoryToReturn.Id }, categoryToReturn);
             }
 
-            //map the entity to a CourseForUpdateDto
-            //apply the updated field values to that dto
-            //map the CourseForUpdateDto back to an entity
             _mapper.Map(category, categoryFromRepo);
 
             _categoryRepository.UpdateCategory(categoryFromRepo);

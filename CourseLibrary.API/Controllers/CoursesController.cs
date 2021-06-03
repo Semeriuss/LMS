@@ -36,29 +36,29 @@ namespace CourseLibrary.API.Controllers
                 return NotFound();
             }
 
-            var coursesForAuthorFromRepo = _courseRepository.GetCourses(categoryId);
-            return Ok(_mapper.Map<IEnumerable<CourseDto>>(coursesForAuthorFromRepo));
+            var coursesFromRepo = _courseRepository.GetCourses(categoryId);
+            return Ok(_mapper.Map<IEnumerable<CourseDto>>(coursesFromRepo));
         }
 
         [HttpGet("{courseId}", Name = "GetCourseForCategory")]
-        public ActionResult<IEnumerable<CourseDto>> GetCourseForAuthor(Guid categoryId, Guid CourseId)
+        public ActionResult<IEnumerable<CourseDto>> GetCourseForCategory(Guid categoryId, Guid CourseId)
         {
             if (!_courseRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
 
-            var courseForAuthorFromRepo = _courseRepository.GetCourse(categoryId, CourseId);
+            var courseFromRepo = _courseRepository.GetCourse(categoryId, CourseId);
 
-            if (courseForAuthorFromRepo == null)
+            if (courseFromRepo == null)
             {
                 return NotFound();
             }
-            return Ok(_mapper.Map<CourseDto>(courseForAuthorFromRepo));
+            return Ok(_mapper.Map<CourseDto>(courseFromRepo));
         }
 
         [HttpPost]
-        public ActionResult<CourseDto> CreateCourseForAuthor(Guid categoryId, CourseForCreationDto course)
+        public ActionResult<CourseDto> CreateCourse(Guid categoryId, CourseForCreationDto course)
         {
             if (!_courseRepository.CategoryExists(categoryId))
             {
@@ -75,17 +75,16 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpPut("{courseId}")]
-
-        public IActionResult UpdateCourseForAuthor(Guid categoryId, Guid courseId, CourseForUpdateDto course)
+        public IActionResult UpdateCourse(Guid categoryId, Guid courseId, CourseForUpdateDto course)
         {
             if (!_courseRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
 
-            var courseForAuthorFromRepo = _courseRepository.GetCourse(categoryId, courseId);
+            var courseFromRepo = _courseRepository.GetCourse(categoryId, courseId);
 
-            if (courseForAuthorFromRepo == null)
+            if (courseFromRepo == null)
             {
                 var courseToReturn = _mapper.Map<Entities.Course>(course);
                 courseToReturn.Id = courseId;
@@ -97,20 +96,16 @@ namespace CourseLibrary.API.Controllers
                     new { categoryId, courseId = courseToReturn.Id}, courseToReturn);
             }
 
-            //map the entity to a CourseForUpdateDto
-            //apply the updated field values to that dto
-            //map the CourseForUpdateDto back to an entity
-            _mapper.Map(course, courseForAuthorFromRepo);
+            _mapper.Map(course, courseFromRepo);
 
-            _courseRepository.UpdateCourse(courseForAuthorFromRepo);
+            _courseRepository.UpdateCourse(courseFromRepo);
 
             _courseRepository.Save();
             return NoContent();
         }
 
         [HttpPatch("{courseId}")]
-        
-        public ActionResult PartiallyUpdateCourseForAuthor(Guid categoryId,
+        public ActionResult PartiallyUpdateCourse(Guid categoryId,
             Guid courseId, 
             JsonPatchDocument<CourseForUpdateDto> patchDocument)
         {
@@ -119,9 +114,9 @@ namespace CourseLibrary.API.Controllers
                 return NotFound();
             }
 
-            var courseForAuthorFromRepo = _courseRepository.GetCourse(categoryId, courseId);
+            var courseFromRepo = _courseRepository.GetCourse(categoryId, courseId);
 
-            if(courseForAuthorFromRepo == null)
+            if(courseFromRepo == null)
             {
                 var courseDto = new CourseForUpdateDto();
                 patchDocument.ApplyTo(courseDto, ModelState);
@@ -143,7 +138,7 @@ namespace CourseLibrary.API.Controllers
                     courseToReturn);
             }
 
-            var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseForAuthorFromRepo);
+            var courseToPatch = _mapper.Map<CourseForUpdateDto>(courseFromRepo);
             //Add Validation
             patchDocument.ApplyTo(courseToPatch, ModelState);
 
@@ -152,9 +147,9 @@ namespace CourseLibrary.API.Controllers
                 return ValidationProblem(ModelState);
             }
 
-            _mapper.Map(courseToPatch, courseForAuthorFromRepo);
+            _mapper.Map(courseToPatch, courseFromRepo);
 
-            _courseRepository.UpdateCourse(courseForAuthorFromRepo);
+            _courseRepository.UpdateCourse(courseFromRepo);
 
             _courseRepository.Save();
 
@@ -163,21 +158,21 @@ namespace CourseLibrary.API.Controllers
 
         [HttpDelete("{courseId}")]
 
-        public ActionResult DeleteCourseForAuthor(Guid categoryId, Guid courseId)
+        public ActionResult DeleteCourse(Guid categoryId, Guid courseId)
         {
             if (!_courseRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
 
-            var courseForAuthorFromRepo = _courseRepository.GetCourse(categoryId, courseId);
+            var courseFromRepo = _courseRepository.GetCourse(categoryId, courseId);
 
-            if (courseForAuthorFromRepo == null)
+            if (courseFromRepo == null)
             {
                 return NotFound();
             }
 
-            _courseRepository.DeleteCourse(courseForAuthorFromRepo);
+            _courseRepository.DeleteCourse(courseFromRepo);
             _courseRepository.Save();
 
             return NoContent();

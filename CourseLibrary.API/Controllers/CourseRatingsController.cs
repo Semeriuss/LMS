@@ -1,4 +1,4 @@
-﻿ using AutoMapper;
+﻿using AutoMapper;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Http;
@@ -31,31 +31,31 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpGet("{ratingId}", Name = "GetRatingOfUser")]
-        public ActionResult GetRatingOfUser(Guid CourseId, Guid categoryId, Guid ratingId)
+        public ActionResult GetRatingOfUser(Guid courseId, Guid categoryId, Guid ratingId)
         {
-            if (!_ratingRepository.CategoryExists(categoryId) || !_ratingRepository.CourseExists(CourseId))
+            if (!_ratingRepository.CategoryExists(categoryId) || !_ratingRepository.CourseExists(courseId))
             {
                 return NotFound();
             }
 
-            var ratingsForAuthorFromRepo = _ratingRepository.GetRating(categoryId, CourseId, ratingId);
-            return Ok(_mapper.Map<CourseRatingDto>(ratingsForAuthorFromRepo));
+            var ratingsFromRepo = _ratingRepository.GetRating(categoryId, courseId, ratingId);
+            return Ok(_mapper.Map<CourseRatingDto>(ratingsFromRepo));
         }
 
         [HttpGet(Name = "GetAverageRating")]
-        public ActionResult GetAverageRating(Guid CourseId)
+        public ActionResult GetAverageRating(Guid courseId)
         {
-            if (!_ratingRepository.CourseExists(CourseId) || !_ratingRepository.CourseRatingExists(CourseId))
+            if (!_ratingRepository.CourseExists(courseId) || !_ratingRepository.CourseRatingExists(courseId))
             {
                 return NotFound();
             }
 
-            double averageRatingForCourseFromRepo = _ratingRepository.GetRatings(CourseId);
+            double averageRatingForCourseFromRepo = _ratingRepository.GetRatings(courseId);
             return Ok(averageRatingForCourseFromRepo);
         }
 
         [HttpPost]
-        public ActionResult<CourseRatingDto> CreateRatingForAuthor(Guid categoryId, Guid courseId, [FromBody] CourseRatingForManipulationDto courseRating)
+        public ActionResult<CourseRatingDto> CreateRatingForCourse(Guid categoryId, Guid courseId, [FromBody] CourseRatingForManipulationDto courseRating)
         {
             if (!_ratingRepository.CategoryExists(categoryId) || !_ratingRepository.CourseExists(courseId))
             {
@@ -68,20 +68,20 @@ namespace CourseLibrary.API.Controllers
 
             var ratingToReturn = _mapper.Map<CourseRatingDto>(ratingEntity);
             return CreatedAtRoute("GetRatingOfUser",
-                new { courseId, categoryId, ratingId = ratingToReturn.Id }, ratingToReturn);
+                new { courseId = courseId, categoryId = categoryId, ratingId = ratingToReturn.Id }, ratingToReturn);
         }
 
         [HttpPut("{ratingId}")]
-        public IActionResult UpdateRatingForAuthor(Guid categoryId, Guid courseId, Guid ratingId, CourseRatingForManipulationDto courseRating)
+        public IActionResult UpdateRatingForCourse(Guid categoryId, Guid courseId, Guid ratingId, CourseRatingForManipulationDto courseRating)
         {
             if (!_ratingRepository.CategoryExists(categoryId) || !_ratingRepository.CourseExists(courseId))
             {
                 return NotFound();
             }
 
-            var ratingForAuthorFromRepo = _ratingRepository.GetRating(categoryId, courseId, ratingId);
+            var ratingFromRepo = _ratingRepository.GetRating(categoryId, courseId, ratingId);
 
-            if (ratingForAuthorFromRepo == null)
+            if (ratingFromRepo == null)
             {
                 var ratingToReturn = _mapper.Map<Entities.CourseRating>(courseRating);
                 ratingToReturn.Id = ratingId;
@@ -90,12 +90,12 @@ namespace CourseLibrary.API.Controllers
                 _ratingRepository.Save();
 
                 return CreatedAtRoute("GetRatingForUser",
-                    new { ratingToReturn.Id, categoryId, courseId = ratingToReturn.Id }, ratingToReturn);
+                    new { categoryId = categoryId, courseId = courseId, ratingToReturn.Id, ratingId = ratingToReturn.Id }, ratingToReturn);
             }
 
-            _mapper.Map(courseRating, ratingForAuthorFromRepo);
+            _mapper.Map(courseRating, ratingFromRepo);
 
-            _ratingRepository.UpdateRating(ratingForAuthorFromRepo);
+            _ratingRepository.UpdateRating(ratingFromRepo);
 
             _ratingRepository.Save();
             return NoContent();
@@ -103,21 +103,21 @@ namespace CourseLibrary.API.Controllers
 
         [HttpDelete("{ratingId}")]
 
-        public ActionResult DeleteRatingForAuthor(Guid categoryId, Guid courseId, Guid ratingId)
+        public ActionResult DeleteRatingForCourse(Guid categoryId, Guid courseId, Guid ratingId)
         {
             if (!_ratingRepository.CategoryExists(categoryId) || !_ratingRepository.CourseExists(courseId))
             {
                 return NotFound();
             }
 
-            var ratingForAuthorFromRepo = _ratingRepository.GetRating(categoryId, courseId, ratingId);
+            var ratingForCourseFromRepo = _ratingRepository.GetRating(categoryId, courseId, ratingId);
 
-            if (ratingForAuthorFromRepo == null)
+            if (ratingForCourseFromRepo == null)
             {
                 return NotFound();
             }
 
-            _ratingRepository.DeleteRating(ratingForAuthorFromRepo);
+            _ratingRepository.DeleteRating(ratingForCourseFromRepo);
             _ratingRepository.Save();
 
             return NoContent();

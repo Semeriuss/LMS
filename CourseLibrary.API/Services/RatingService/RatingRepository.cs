@@ -58,7 +58,11 @@ namespace CourseLibrary.API.Services.RatingService
         }
 
         public void DeleteRating(CourseRating courseRating)
-        {
+        {   
+            if (courseRating == null)
+            {
+                throw new ArgumentNullException(nameof(courseRating));
+            }
             _context.CourseRatings.Remove(courseRating);
         }
 
