@@ -23,23 +23,23 @@ namespace CourseLibrary.API.Services.CourseService
 
         public IEnumerable<Course> GetCourses(Guid categoryId, CourseParameters courseParameters)
         {
-            if (string.IsNullOrWhiteSpace(courseParameters.UserId.ToString()) && string.IsNullOrWhiteSpace(courseParameters.SearchQuery))
+            if (string.IsNullOrWhiteSpace(courseParameters.Username) && string.IsNullOrWhiteSpace(courseParameters.SearchQuery))
             {
                 return GetCourses(categoryId);
             }
 
             var collection = _context.Courses as IQueryable<Course>;
 
-            if (!string.IsNullOrWhiteSpace(courseParameters.UserId.ToString()))
+            if (!string.IsNullOrWhiteSpace(courseParameters.Username))
             {
-                var id = courseParameters.UserId;
-                collection = collection.Where(a => a.UserId == id);
+                var username = courseParameters.Username.ToLower();
+                collection = collection.Where(a => a.Username.ToLower() == username && a.CategoryId == categoryId);
             }
 
             if (!string.IsNullOrWhiteSpace(courseParameters.SearchQuery))
             {
                 var searchQuery = courseParameters.SearchQuery.Trim();
-                collection = collection.Where(a => a.Title.ToLower().Contains(searchQuery.ToLower()) || a.Description.ToLower().Contains(searchQuery.ToLower()));
+                collection = collection.Where(a => (a.Title.ToLower().Contains(searchQuery.ToLower()) || a.Description.ToLower().Contains(searchQuery.ToLower())) && a.CategoryId == categoryId);
             }
 
             return collection.ToList();

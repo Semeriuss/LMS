@@ -58,6 +58,7 @@ namespace CourseLibrary.API.Migrations
                     Description = table.Column<string>(type: "TEXT", maxLength: 1500, nullable: true),
                     CategoryId = table.Column<Guid>(type: "TEXT", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: true),
                     AuthorId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -96,13 +97,13 @@ namespace CourseLibrary.API.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Content_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,13 +124,13 @@ namespace CourseLibrary.API.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_CourseRatings_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.InsertData(
@@ -219,23 +220,23 @@ namespace CourseLibrary.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
-                values: new object[] { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers.", "Commandeering a Ship Without Getting Caught", 1 });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId", "Username" },
+                values: new object[] { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers.", "Commandeering a Ship Without Getting Caught", 1, "Try" });
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
-                values: new object[] { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny.", "Overthrowing Mutiny", 4 });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId", "Username" },
+                values: new object[] { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny.", "Overthrowing Mutiny", 4, "Aben-bel" });
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
-                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), null, new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk.", "Avoiding Brawls While Drinking as Much Rum as You Desire", 1 });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId", "Username" },
+                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), null, new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk.", "Avoiding Brawls While Drinking as Much Rum as You Desire", 1, "Try" });
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
-                values: new object[] { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"), null, new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.", "Singalong Pirate Hits", 4 });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId", "Username" },
+                values: new object[] { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"), null, new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.", "Singalong Pirate Hits", 4, "Aben-bel" });
 
             migrationBuilder.InsertData(
                 table: "Content",

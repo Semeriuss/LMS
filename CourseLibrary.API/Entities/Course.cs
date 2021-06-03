@@ -20,7 +20,10 @@ namespace CourseLibrary.API.Entities
         public Category Category { get; set; }
         public Guid CategoryId { get; set; }
 
+        [ForeignKey("UserId")]
         public int UserId { get; set; }
+
+        public string Username { get; set; }
 
     }
 }
