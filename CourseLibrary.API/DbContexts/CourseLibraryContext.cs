@@ -17,6 +17,7 @@ namespace CourseLibrary.API.DbContexts
         public DbSet<Content> Content { get; set; }
         public DbSet<CourseRating> CourseRatings { get; set; }
         public DbSet<Resource> Resources { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -127,28 +128,28 @@ namespace CourseLibrary.API.DbContexts
                new Course
                {
                    Id = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
-                   AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                   CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                    Title = "Commandeering a Ship Without Getting Caught",
                    Description = "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers."
                },
                new Course
                {
                    Id = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
-                   AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                   CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                    Title = "Overthrowing Mutiny",
                    Description = "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny."
                },
                new Course
                {
                    Id = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
-                   AuthorId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                   CategoryId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                    Title = "Avoiding Brawls While Drinking as Much Rum as You Desire",
                    Description = "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk."
                },
                new Course
                {
                    Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869a"),
-                   AuthorId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
+                   CategoryId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
                    Title = "Singalong Pirate Hits",
                    Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note."
                }
@@ -158,7 +159,7 @@ namespace CourseLibrary.API.DbContexts
                 new Content
                 {
                     Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b00"),
-                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                     CourseId = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                     Title = "OOP II",
                     Type = "Video",
@@ -167,7 +168,7 @@ namespace CourseLibrary.API.DbContexts
                 new Content
                 {
                     Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b01"),
-                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                     CourseId = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                     Title = "Web",
                     Type = "Video",
@@ -176,7 +177,7 @@ namespace CourseLibrary.API.DbContexts
                 new Content
                 {
                     Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b02"),
-                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                     CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                     Title = "System",
                     Type = "Video",
@@ -185,7 +186,7 @@ namespace CourseLibrary.API.DbContexts
                 new Content
                 {
                     Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b03"),
-                    AuthorId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                    CategoryId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                     CourseId = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                     Title = "DLD",
                     Type = "Video",
@@ -194,7 +195,7 @@ namespace CourseLibrary.API.DbContexts
                 new Content
                 {
                     Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b04"),
-                    AuthorId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
+                    CategoryId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
                     CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                     Title = "Dyna",
                     Type = "Video",
@@ -207,39 +208,40 @@ namespace CourseLibrary.API.DbContexts
                 {
                     Id = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"),
                     CourseId = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
-                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                     Value = 4
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ef"),
                     CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
-                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                     Value = 3
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad98"),
                     CourseId = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
-                    AuthorId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                    CategoryId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                     Value = 1
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869b"),
                     CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
-                    AuthorId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
+                    CategoryId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
                     Value = 4
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad99"),
                     CourseId = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
-                    AuthorId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                     Value = 3
                 }
             );
-                        modelBuilder.Entity<Resource>().HasData(
+
+            modelBuilder.Entity<Resource>().HasData(
                 new Resource()
                 {
                     FileName = "Test",
@@ -247,7 +249,35 @@ namespace CourseLibrary.API.DbContexts
                     ContentId = new Guid(),
                     Id = Guid.Parse("d28898e9-2ba9-473a-a40f-e38cd54f9b35")
                 }
-               );
+            );
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    Id = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
+                    Title = "Mathematics",
+                    Description = "In this course you'll learn how to calculate favourite pirate songs without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    Id = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
+                    Title = "Natural Science",
+                    Description = "In this course you'll learn nature and it's science without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    Id = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
+                    Title = "Astronomy",
+                    Description = "In this course you'll learn the universe and beyond favourite pirate songs without sounding like you actually know the words or how to hold a note."
+                },
+                new Category
+                {
+                    Id = Guid.Parse("102b566b-ba1f-404c-b2df-e2cde39ade09"),
+                    Title = "Computer Science",
+                    Description = "In this course you'll learn how to program a software without sounding like you actually know the words or how to hold a note."
+                }
+            );
+
 
             base.OnModelCreating(modelBuilder);
         }

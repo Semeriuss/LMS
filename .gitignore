@@ -243,3 +243,7 @@ _Pvt_Extensions
 
 # Local History for Visual Studio Code
 .history/
+
+obj/
+CourseLibrary.API/obj/
+CourseLibrary.API/bin/

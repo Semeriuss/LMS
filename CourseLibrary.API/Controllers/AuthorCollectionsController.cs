@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CourseLibrary.API.Helpers;
 using CourseLibrary.API.Models;
-using CourseLibrary.API.Services;
+using CourseLibrary.API.Services.AuthorService;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,13 +14,13 @@ namespace CourseLibrary.API.Controllers
     [Route("api/authorCollections")]
     public class AuthorCollectionsController : ControllerBase
     {
-        private readonly ICourseLibraryRepository _courseLibraryRepository;
+        private readonly IAuthorRepository _courseLibraryRepository;
         private readonly IMapper _mapper;
 
-        public AuthorCollectionsController(ICourseLibraryRepository courseLibraryRepository, IMapper mapper)
+        public AuthorCollectionsController(IAuthorRepository authorRepository, IMapper mapper)
         {
-            _courseLibraryRepository = courseLibraryRepository ??
-                throw new ArgumentNullException(nameof(courseLibraryRepository));
+            _courseLibraryRepository = authorRepository ??
+                throw new ArgumentNullException(nameof(authorRepository));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
         }

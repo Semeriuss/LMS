@@ -6,47 +6,48 @@ using AutoMapper;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using CourseLibrary.API.Services.ContentService;
 
 namespace CourseLibrary.API.Controllers
 {
     [ApiController]
-    [Route("api/authors/{authorId}/courses/{courseId}/content")]
+    [Route("api/category/{categoryId}/courses/{courseId}/content")]
 
     public class ContentController : ControllerBase
     {
-        private readonly ICourseLibraryRepository _courseLibraryRepository;
+        private readonly IContentRepository _contentRepository;
         private readonly IMapper _mapper;
 
-        public ContentController(ICourseLibraryRepository courseLibraryRepository, IMapper mapper)
+        public ContentController(IContentRepository contentRepository, IMapper mapper)
         {
-            _courseLibraryRepository = courseLibraryRepository ?? 
-                                       throw new ArgumentNullException(nameof(courseLibraryRepository));
+            _contentRepository = contentRepository ?? 
+                                       throw new ArgumentNullException(nameof(contentRepository));
             _mapper = mapper ??
                       throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]   
-        public ActionResult<IEnumerable<ContentDto>> GetContentsForAuthorAndCourse(Guid authorId, Guid courseId)
+        public ActionResult<IEnumerable<ContentDto>> GetContentsForCategoryAndCourse(Guid categoryId, Guid courseId)
         {
-            //if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
-            //{
-            //    return NotFound();
-            //}
+            if (!_contentRepository.CategoryExists(categoryId) || !_contentRepository.CourseExists(courseId))
+            {
+               return NotFound();
+            }
 
-            var contentsFromRepo = _courseLibraryRepository.GetContents(authorId, courseId);
+            var contentsFromRepo = _contentRepository.GetContents(categoryId, courseId);
 
             return Ok(_mapper.Map<IEnumerable<ContentDto>>(contentsFromRepo));
         }
 
-        [HttpGet("{contentId}", Name = "GetContentForAuthorAndCourse")]
-        public ActionResult<IEnumerable<ContentDto>> GetContentForAuthorAndCourse(Guid authorId, Guid courseId, Guid contentId)
+        [HttpGet("{contentId}", Name = "GetContentForCategoryAndCourse")]
+        public ActionResult<IEnumerable<ContentDto>> GetContentForCategoryAndCourse(Guid categoryId, Guid courseId, Guid contentId)
         {
-            if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
+            if (!_contentRepository.CategoryExists(categoryId) || !_contentRepository.CourseExists(courseId))
             {
                 return NotFound();
             }
 
-            var contentFromRepo = _courseLibraryRepository.GetContent(authorId, courseId, contentId);
+            var contentFromRepo = _contentRepository.GetContent(categoryId, courseId, contentId);
             if (contentFromRepo == null)
             {
                 return NotFound();
@@ -56,73 +57,70 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ContentDto> CreateContent(Guid authorId, Guid courseId, ContentForCreationDto content)
+        public ActionResult<ContentDto> CreateContent(Guid categoryId, Guid courseId, ContentForCreationDto content)
         {
-            if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
+            if (!_contentRepository.CategoryExists(categoryId) || !_contentRepository.CourseExists(courseId))
             {
                 return NotFound();
             }
 
             var contentEntity = _mapper.Map<Entities.Content>(content);
-            _courseLibraryRepository.AddContent(authorId, courseId, contentEntity);
-            _courseLibraryRepository.Save();
+            _contentRepository.AddContent(categoryId, courseId, contentEntity);
+            _contentRepository.Save();
 
             var contentToReturn = _mapper.Map<ContentDto>(contentEntity);
 
-            return CreatedAtRoute("GetContentForAuthorAndCourse",
-                new { authorId = authorId, courseId = courseId, contentId = contentToReturn.Id }, contentToReturn);
+            return CreatedAtRoute("GetContentForCategoryAndCourse",
+                new { categoryId = categoryId, courseId = courseId, contentId = contentToReturn.Id }, contentToReturn);
         }
 
         [HttpPut("{contentId}")]
-        public IActionResult UpdateContent(Guid authorId, Guid courseId, Guid contentId, ContentForUpdateDto content)
+        public IActionResult UpdateContent(Guid categoryId, Guid courseId, Guid contentId, ContentForUpdateDto content)
         {
-            if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
+            if (!_contentRepository.CategoryExists(categoryId) || !_contentRepository.CourseExists(courseId))
             {
                 return NotFound();
             }
 
-            var contentFromRepo = _courseLibraryRepository.GetContent(authorId, courseId, contentId);
+            var contentFromRepo = _contentRepository.GetContent(categoryId, courseId, contentId);
 
             if (contentFromRepo == null)
             {
                 var contentToReturn = _mapper.Map<Entities.Content>(content);
                 contentToReturn.Id = contentId;
 
-                _courseLibraryRepository.AddContent(authorId, courseId, contentToReturn);
-                _courseLibraryRepository.Save();
+                _contentRepository.AddContent(categoryId, courseId, contentToReturn);
+                _contentRepository.Save();
 
-                return CreatedAtRoute("GetContentForAuthorAndCourse",
-                    new { authorId = authorId, courseId = courseId, contentId = contentToReturn.Id }, contentToReturn);
+                return CreatedAtRoute("GetContentForCategoryAndCourse",
+                    new { categoryId = categoryId, courseId = courseId, contentId = contentToReturn.Id }, contentToReturn);
             }
 
-            //map the entity to a CourseForUpdateDto
-            //apply the updated field values to that dto
-            //map the CourseForUpdateDto back to an entity
             _mapper.Map(content, contentFromRepo);
 
-            _courseLibraryRepository.UpdateContent(contentFromRepo);
+            _contentRepository.UpdateContent(contentFromRepo);
 
-            _courseLibraryRepository.Save();
+            _contentRepository.Save();
             return NoContent();
         }
 
         [HttpDelete("{contentId}")]
-        public ActionResult DeleteContentForCourse(Guid authorId, Guid courseId, Guid contentId)
+        public ActionResult DeleteContentForCourse(Guid categoryId, Guid courseId, Guid contentId)
         {
-            if (!_courseLibraryRepository.AuthorExists(authorId) || !_courseLibraryRepository.CourseExists(courseId))
+            if (!_contentRepository.CategoryExists(categoryId) || !_contentRepository.CourseExists(courseId))
             {
                 return NotFound();
             }
 
-            var contentFromRepo = _courseLibraryRepository.GetContent(authorId, courseId, contentId);
+            var contentFromRepo = _contentRepository.GetContent(categoryId, courseId, contentId);
 
             if (contentFromRepo == null)
             {
                 return NotFound();
             }
 
-            _courseLibraryRepository.DeleteContent(contentFromRepo);
-            _courseLibraryRepository.Save();
+            _contentRepository.DeleteContent(contentFromRepo);
+            _contentRepository.Save();
 
             return NoContent();
 

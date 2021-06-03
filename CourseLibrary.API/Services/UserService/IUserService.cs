@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CourseLibrary.API.Entities;
 
-namespace CourseLibrary.API.Services
+namespace CourseLibrary.API.Services.UserService
 {
     public interface IUserService
     {
@@ -12,5 +12,6 @@ namespace CourseLibrary.API.Services
         User Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
+
     }
 }

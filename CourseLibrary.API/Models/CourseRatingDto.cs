@@ -11,7 +11,7 @@ namespace CourseLibrary.API.Models
 
         public Guid CourseId { get; set; }
         
-        public Guid AuthorId { get; set; }
+        public Guid CategoryId { get; set; }
 
         public double Value { get; set; }
     }
