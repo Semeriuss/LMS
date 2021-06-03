@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CourseLibrary.API.ResourceParameters;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -28,6 +29,15 @@ namespace CourseLibrary.API.Controllers
                 throw new ArgumentNullException(nameof(categoryRepository));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
+        }
+
+        [HttpGet]
+        [HttpHead]
+        public ActionResult<IEnumerable<CategoryDto>> GetCategories(
+            [FromQuery] CategoryParameters categoryParameters)
+        {
+            var categoriesFromRepo = _categoryRepository.GetCategories(categoryParameters);
+            return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categoriesFromRepo));
         }
 
         [HttpGet]
@@ -67,19 +77,19 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpPut("{categoryId}")]
-        public IActionResult UpdateCategory(Guid CategoryId, CategoryForUpdateDto category)
+        public IActionResult UpdateCategory(Guid categoryId, CategoryForUpdateDto category)
         {
-            if (!_categoryRepository.CategoryExists(CategoryId))
+            if (!_categoryRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
 
-            var categoryFromRepo = _categoryRepository.GetCategory(CategoryId);
+            var categoryFromRepo = _categoryRepository.GetCategory(categoryId);
 
             if (categoryFromRepo == null)
             {
                 var categoryToReturn = _mapper.Map<Entities.Category>(category);
-                categoryToReturn.Id = CategoryId;
+                categoryToReturn.Id = categoryId;
 
                 _categoryRepository.AddCategory(categoryToReturn);
                 _categoryRepository.Save();

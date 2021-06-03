@@ -32,6 +32,30 @@ namespace CourseLibrary.API.Services.CategoryService
                 .Where(c => c.Id == categoryId).FirstOrDefault();
         }
 
+        public IEnumerable<Category> GetCategories(CategoryParameters categoryParameters)
+        {
+            if (string.IsNullOrWhiteSpace(categoryParameters.Title) && string.IsNullOrWhiteSpace(categoryParameters.SearchQuery))
+            {
+                return GetCategories();
+            }
+
+            var collection = _context.Categories as IQueryable<Category>;
+
+            if (!string.IsNullOrWhiteSpace(categoryParameters.Title))
+            {
+                var title = categoryParameters.Title.Trim();
+                collection = collection.Where(a => a.Title == title);
+            }
+
+            if (!string.IsNullOrWhiteSpace(categoryParameters.SearchQuery))
+            {
+                var searchQuery = categoryParameters.SearchQuery.Trim();
+                collection = collection.Where(a => a.Title.Contains(searchQuery) || a.Description.Contains(searchQuery));
+            }
+
+            return collection.ToList();
+        }
+
         public void AddCategory(Category category)
         {
             if (category == null)

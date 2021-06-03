@@ -68,7 +68,7 @@ namespace CourseLibrary.API.Controllers
 
             var ratingToReturn = _mapper.Map<CourseRatingDto>(ratingEntity);
             return CreatedAtRoute("GetRatingOfUser",
-                new { courseId = courseId, categoryId = categoryId, ratingId = ratingToReturn.Id }, ratingToReturn);
+                new { categoryId, courseId, ratingId = ratingToReturn.Id }, ratingToReturn);
         }
 
         [HttpPut("{ratingId}")]
@@ -90,7 +90,7 @@ namespace CourseLibrary.API.Controllers
                 _ratingRepository.Save();
 
                 return CreatedAtRoute("GetRatingForUser",
-                    new { categoryId = categoryId, courseId = courseId, ratingToReturn.Id, ratingId = ratingToReturn.Id }, ratingToReturn);
+                    new { categoryId, courseId, ratingToReturn.Id, ratingId = ratingToReturn.Id }, ratingToReturn);
             }
 
             _mapper.Map(courseRating, ratingFromRepo);

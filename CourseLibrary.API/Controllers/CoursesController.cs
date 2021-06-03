@@ -41,14 +41,14 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpGet("{courseId}", Name = "GetCourseForCategory")]
-        public ActionResult<IEnumerable<CourseDto>> GetCourseForCategory(Guid categoryId, Guid CourseId)
+        public ActionResult<IEnumerable<CourseDto>> GetCourseForCategory(Guid categoryId, Guid courseId)
         {
             if (!_courseRepository.CategoryExists(categoryId))
             {
                 return NotFound();
             }
 
-            var courseFromRepo = _courseRepository.GetCourse(categoryId, CourseId);
+            var courseFromRepo = _courseRepository.GetCourse(categoryId, courseId);
 
             if (courseFromRepo == null)
             {
@@ -71,7 +71,7 @@ namespace CourseLibrary.API.Controllers
 
             var courseToReturn = _mapper.Map<CourseDto>(courseEntity);
             return CreatedAtRoute("GetCourseForCategory",
-                new { categoryId = categoryId, courseId = courseToReturn.Id }, courseToReturn);
+                new { categoryId, courseId = courseToReturn.Id }, courseToReturn);
         }
 
         [HttpPut("{courseId}")]

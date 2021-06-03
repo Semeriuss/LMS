@@ -33,7 +33,7 @@ namespace CourseLibrary.API.Controllers
         {
             var authorsFromRepo = _authorRepository.GetAuthors(authorsResourceParameters);
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
-        }
+        } 
 
         [HttpGet("{authorId}", Name = "GetAuthor")]
         public IActionResult GetAuthor(Guid authorId)
