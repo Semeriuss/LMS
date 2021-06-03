@@ -33,19 +33,18 @@ namespace CourseLibrary.API.Controllers
 
         [HttpGet]
         [HttpHead]
-        public ActionResult<IEnumerable<CategoryDto>> GetCategories(
-            [FromQuery] CategoryParameters categoryParameters)
+        public ActionResult<IEnumerable<CategoryDto>> GetCategories([FromQuery] CategoryParameters categoryParameters)
         {
             var categoriesFromRepo = _categoryRepository.GetCategories(categoryParameters);
             return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categoriesFromRepo));
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<CategoryDto>> GetCategories()
-        {
-            var categoriesFromRepo = _categoryRepository.GetCategories();
-            return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categoriesFromRepo));
-        }
+        //[HttpGet]
+        //public ActionResult<IEnumerable<CategoryDto>> GetCategories()
+        //{
+        //    var categoriesFromRepo = _categoryRepository.GetCategories();
+        //    return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categoriesFromRepo));
+        //}
 
         [HttpGet("{categoryId}", Name = "GetCategory")]
         public IActionResult GetCategory(Guid categoryId)

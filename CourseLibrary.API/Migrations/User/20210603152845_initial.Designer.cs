@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseLibrary.API.Migrations.User
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210603082904_initial")]
+    [Migration("20210603152845_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,6 +59,46 @@ namespace CourseLibrary.API.Migrations.User
                             PasswordSalt = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                             Role = "Teacher",
                             Username = "Try"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstName = "Aymen",
+                            LastName = "Moh",
+                            PasswordHash = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            PasswordSalt = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            Role = "Student",
+                            Username = "Aymenua"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FirstName = "Semere",
+                            LastName = "Habtu",
+                            PasswordHash = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            PasswordSalt = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            Role = "Student",
+                            Username = "Semeriuss"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FirstName = "Abeni",
+                            LastName = "Bel",
+                            PasswordHash = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            PasswordSalt = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            Role = "Teacher",
+                            Username = "Aben-bel"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FirstName = "Betty",
+                            LastName = "Tesh",
+                            PasswordHash = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            PasswordSalt = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            Role = "Student",
+                            Username = "Betziii"
                         });
                 });
 #pragma warning restore 612, 618

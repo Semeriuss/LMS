@@ -57,6 +57,7 @@ namespace CourseLibrary.API.Migrations
                     Title = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "TEXT", maxLength: 1500, nullable: true),
                     CategoryId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     AuthorId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -95,13 +96,13 @@ namespace CourseLibrary.API.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Content_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,7 +112,8 @@ namespace CourseLibrary.API.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Value = table.Column<double>(type: "REAL", nullable: false),
                     CourseId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    CategoryId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,13 +123,13 @@ namespace CourseLibrary.API.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CourseRatings_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -217,23 +219,23 @@ namespace CourseLibrary.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title" },
-                values: new object[] { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers.", "Commandeering a Ship Without Getting Caught" });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
+                values: new object[] { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers.", "Commandeering a Ship Without Getting Caught", 1 });
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title" },
-                values: new object[] { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny.", "Overthrowing Mutiny" });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
+                values: new object[] { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), null, new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny.", "Overthrowing Mutiny", 4 });
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title" },
-                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), null, new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk.", "Avoiding Brawls While Drinking as Much Rum as You Desire" });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
+                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), null, new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk.", "Avoiding Brawls While Drinking as Much Rum as You Desire", 1 });
 
             migrationBuilder.InsertData(
                 table: "Courses",
-                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title" },
-                values: new object[] { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"), null, new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.", "Singalong Pirate Hits" });
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Description", "Title", "UserId" },
+                values: new object[] { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"), null, new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.", "Singalong Pirate Hits", 4 });
 
             migrationBuilder.InsertData(
                 table: "Content",
@@ -262,28 +264,28 @@ namespace CourseLibrary.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "CourseRatings",
-                columns: new[] { "Id", "CategoryId", "CourseId", "Value" },
-                values: new object[] { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ef"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), 3.0 });
+                columns: new[] { "Id", "CategoryId", "CourseId", "UserId", "Value" },
+                values: new object[] { new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ef"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), 2, 3.0 });
 
             migrationBuilder.InsertData(
                 table: "CourseRatings",
-                columns: new[] { "Id", "CategoryId", "CourseId", "Value" },
-                values: new object[] { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), 4.0 });
+                columns: new[] { "Id", "CategoryId", "CourseId", "UserId", "Value" },
+                values: new object[] { new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"), new Guid("2902b665-1190-4c70-9915-b9c2d7680450"), new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"), 3, 4.0 });
 
             migrationBuilder.InsertData(
                 table: "CourseRatings",
-                columns: new[] { "Id", "CategoryId", "CourseId", "Value" },
-                values: new object[] { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 4.0 });
+                columns: new[] { "Id", "CategoryId", "CourseId", "UserId", "Value" },
+                values: new object[] { new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 2, 4.0 });
 
             migrationBuilder.InsertData(
                 table: "CourseRatings",
-                columns: new[] { "Id", "CategoryId", "CourseId", "Value" },
-                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad98"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 1.0 });
+                columns: new[] { "Id", "CategoryId", "CourseId", "UserId", "Value" },
+                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad98"), new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 3, 1.0 });
 
             migrationBuilder.InsertData(
                 table: "CourseRatings",
-                columns: new[] { "Id", "CategoryId", "CourseId", "Value" },
-                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 3.0 });
+                columns: new[] { "Id", "CategoryId", "CourseId", "UserId", "Value" },
+                values: new object[] { new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"), new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"), new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"), 5, 3.0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Content_CategoryId",

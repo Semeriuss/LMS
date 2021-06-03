@@ -13,6 +13,8 @@ namespace CourseLibrary.API.Models
         
         public Guid CategoryId { get; set; }
 
+        public int UserId { get; set; }
+
         public double Value { get; set; }
     }
 }

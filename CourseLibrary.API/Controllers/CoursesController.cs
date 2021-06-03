@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CourseLibrary.API.ResourceParameters;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -29,16 +30,23 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CourseDto>> GetCoursesForCategory(Guid categoryId)
+        public ActionResult<IEnumerable<CourseDto>> GetCourses(Guid categoryId, [FromQuery] CourseParameters courseParameters)
         {
-            if (!_courseRepository.CategoryExists(categoryId))
-            {
-                return NotFound();
-            }
+            //if (!_courseRepository.CategoryExists(categoryId))
+            //{
+            //    return NotFound();
+            //}
 
-            var coursesFromRepo = _courseRepository.GetCourses(categoryId);
+            var coursesFromRepo = _courseRepository.GetCourses(categoryId, courseParameters);
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(coursesFromRepo));
         }
+
+        //[HttpGet]
+        //public ActionResult<IEnumerable<CourseDto>> GetCoursesForCategory(Guid categoryId)
+        //{
+        //    var coursesFromRepo = _courseRepository.GetCourses(categoryId);
+        //    return Ok(_mapper.Map<IEnumerable<CourseDto>>(coursesFromRepo));
+        //}
 
         [HttpGet("{courseId}", Name = "GetCourseForCategory")]
         public ActionResult<IEnumerable<CourseDto>> GetCourseForCategory(Guid categoryId, Guid courseId)

@@ -14,5 +14,7 @@ namespace CourseLibrary.API.Models
         public string Description { get; set; }
 
         public Guid CategoryId { get; set; }
+
+        public int UserId { get; set; }
     }
 }

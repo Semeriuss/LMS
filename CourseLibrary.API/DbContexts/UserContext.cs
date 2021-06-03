@@ -26,6 +26,50 @@ namespace CourseLibrary.API.DbContexts
                     PasswordHash = new byte[10],
                     PasswordSalt = new byte[10]
 
+                },
+                new User()
+                {
+                    Id = 2,
+                    FirstName = "Aymen",
+                    LastName = "Moh",
+                    Username = "Aymenua",
+                    Role = "Student",
+                    PasswordHash = new byte[10],
+                    PasswordSalt = new byte[10]
+
+                },
+                new User()
+                {
+                    Id = 3,
+                    FirstName = "Semere",
+                    LastName = "Habtu",
+                    Username = "Semeriuss",
+                    Role = "Student",
+                    PasswordHash = new byte[10],
+                    PasswordSalt = new byte[10]
+
+                },
+                new User()
+                {
+                    Id = 4,
+                    FirstName = "Abeni",
+                    LastName = "Bel",
+                    Username = "Aben-bel",
+                    Role = "Teacher",
+                    PasswordHash = new byte[10],
+                    PasswordSalt = new byte[10]
+
+                },
+                new User()
+                {
+                    Id = 5,
+                    FirstName = "Betty",
+                    LastName = "Tesh",
+                    Username = "Betziii",
+                    Role = "Student",
+                    PasswordHash = new byte[10],
+                    PasswordSalt = new byte[10]
+
                 });
 
             base.OnModelCreating(modelBuilder);

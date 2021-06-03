@@ -16,6 +16,35 @@ namespace CourseLibrary.API.Services.CourseService
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+        //public IEnumerable<Course> GetCourses()
+        //{
+        //    return _context.Courses.ToList<Course>();
+        //}
+
+        public IEnumerable<Course> GetCourses(Guid categoryId, CourseParameters courseParameters)
+        {
+            if (string.IsNullOrWhiteSpace(courseParameters.UserId.ToString()) && string.IsNullOrWhiteSpace(courseParameters.SearchQuery))
+            {
+                return GetCourses(categoryId);
+            }
+
+            var collection = _context.Courses as IQueryable<Course>;
+
+            if (!string.IsNullOrWhiteSpace(courseParameters.UserId.ToString()))
+            {
+                var id = courseParameters.UserId;
+                collection = collection.Where(a => a.UserId == id);
+            }
+
+            if (!string.IsNullOrWhiteSpace(courseParameters.SearchQuery))
+            {
+                var searchQuery = courseParameters.SearchQuery.Trim();
+                collection = collection.Where(a => a.Title.ToLower().Contains(searchQuery.ToLower()) || a.Description.ToLower().Contains(searchQuery.ToLower()));
+            }
+
+            return collection.ToList();
+        }
+
         public void AddCourse(Guid categoryId, Course course)
         {
             if (categoryId == Guid.Empty)

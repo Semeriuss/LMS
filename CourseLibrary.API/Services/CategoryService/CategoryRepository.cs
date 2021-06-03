@@ -43,14 +43,14 @@ namespace CourseLibrary.API.Services.CategoryService
 
             if (!string.IsNullOrWhiteSpace(categoryParameters.Title))
             {
-                var title = categoryParameters.Title.Trim();
-                collection = collection.Where(a => a.Title == title);
+                var title = categoryParameters.Title.Trim().ToLower();
+                collection = collection.Where(a => a.Title.ToLower() == title);
             }
 
             if (!string.IsNullOrWhiteSpace(categoryParameters.SearchQuery))
             {
                 var searchQuery = categoryParameters.SearchQuery.Trim();
-                collection = collection.Where(a => a.Title.Contains(searchQuery) || a.Description.Contains(searchQuery));
+                collection = collection.Where(a => a.Title.ToLower().Contains(searchQuery.ToLower()) || a.Description.ToLower().Contains(searchQuery.ToLower()));
             }
 
             return collection.ToList();

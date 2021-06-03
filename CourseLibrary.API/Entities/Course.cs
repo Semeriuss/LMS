@@ -20,6 +20,7 @@ namespace CourseLibrary.API.Entities
         public Category Category { get; set; }
         public Guid CategoryId { get; set; }
 
+        public int UserId { get; set; }
 
     }
 }

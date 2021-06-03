@@ -30,6 +30,26 @@ namespace CourseLibrary.API.Migrations.User
                 table: "Users",
                 columns: new[] { "Id", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Role", "Token", "Username" },
                 values: new object[] { 1, "Someone", "Everyone", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Teacher", null, "Try" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Role", "Token", "Username" },
+                values: new object[] { 2, "Aymen", "Moh", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Student", null, "Aymenua" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Role", "Token", "Username" },
+                values: new object[] { 3, "Semere", "Habtu", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Student", null, "Semeriuss" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Role", "Token", "Username" },
+                values: new object[] { 4, "Abeni", "Bel", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Teacher", null, "Aben-bel" });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Role", "Token", "Username" },
+                values: new object[] { 5, "Betty", "Tesh", new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, "Student", null, "Betziii" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

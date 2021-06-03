@@ -130,28 +130,32 @@ namespace CourseLibrary.API.DbContexts
                    Id = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                    Title = "Commandeering a Ship Without Getting Caught",
-                   Description = "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers."
+                   Description = "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers.",
+                   UserId = 1
                },
                new Course
                {
                    Id = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                    CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                    Title = "Overthrowing Mutiny",
-                   Description = "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny."
+                   Description = "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny.",
+                   UserId = 4
                },
                new Course
                {
                    Id = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                    CategoryId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                    Title = "Avoiding Brawls While Drinking as Much Rum as You Desire",
-                   Description = "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk."
+                   Description = "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk.",
+                   UserId = 1
                },
                new Course
                {
                    Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869a"),
                    CategoryId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
                    Title = "Singalong Pirate Hits",
-                   Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note."
+                   Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.",
+                   UserId = 4
                }
                );
 
@@ -209,35 +213,40 @@ namespace CourseLibrary.API.DbContexts
                     Id = Guid.Parse("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"),
                     CourseId = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                     CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
-                    Value = 4
+                    Value = 4,
+                    UserId = 2
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ef"),
                     CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                     CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
-                    Value = 3
+                    Value = 3,
+                    UserId = 2
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad98"),
                     CourseId = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                     CategoryId = Guid.Parse("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
-                    Value = 1
+                    Value = 1,
+                    UserId = 3
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("40ff5488-fdab-45b5-bc3a-14302d59869b"),
                     CourseId = Guid.Parse("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                     CategoryId = Guid.Parse("2902b665-1190-4c70-9915-b9c2d7680450"),
-                    Value = 4
+                    Value = 4,
+                    UserId = 3
                 },
                 new CourseRating
                 {
                     Id = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad99"),
                     CourseId = Guid.Parse("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                     CategoryId = Guid.Parse("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
-                    Value = 3
+                    Value = 3,
+                    UserId = 5
                 }
             );
 

@@ -293,6 +293,9 @@ namespace CourseLibrary.API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
@@ -307,28 +310,32 @@ namespace CourseLibrary.API.Migrations
                             Id = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6b"),
                             CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             Description = "Commandeering a ship in rough waters isn't easy.  Commandeering it without getting caught is even harder.  In this course you'll learn how to sail away and avoid those pesky musketeers.",
-                            Title = "Commandeering a Ship Without Getting Caught"
+                            Title = "Commandeering a Ship Without Getting Caught",
+                            UserId = 1
                         },
                         new
                         {
                             Id = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
                             CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             Description = "In this course, the author provides tips to avoid, or, if needed, overthrow pirate mutiny.",
-                            Title = "Overthrowing Mutiny"
+                            Title = "Overthrowing Mutiny",
+                            UserId = 4
                         },
                         new
                         {
                             Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
                             CategoryId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                             Description = "Every good pirate loves rum, but it also has a tendency to get you into trouble.  In this course you'll learn how to avoid that.  This new exclusive edition includes an additional chapter on how to run fast without falling while drunk.",
-                            Title = "Avoiding Brawls While Drinking as Much Rum as You Desire"
+                            Title = "Avoiding Brawls While Drinking as Much Rum as You Desire",
+                            UserId = 1
                         },
                         new
                         {
                             Id = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869a"),
                             CategoryId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
                             Description = "In this course you'll learn how to sing all-time favourite pirate songs without sounding like you actually know the words or how to hold a note.",
-                            Title = "Singalong Pirate Hits"
+                            Title = "Singalong Pirate Hits",
+                            UserId = 4
                         });
                 });
 
@@ -343,6 +350,9 @@ namespace CourseLibrary.API.Migrations
 
                     b.Property<Guid>("CourseId")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Value")
                         .HasColumnType("REAL");
@@ -361,6 +371,7 @@ namespace CourseLibrary.API.Migrations
                             Id = new Guid("5b1c2b4d-48c7-402a-80c3-cc796ad49c6d"),
                             CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
+                            UserId = 2,
                             Value = 4.0
                         },
                         new
@@ -368,6 +379,7 @@ namespace CourseLibrary.API.Migrations
                             Id = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ef"),
                             CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                            UserId = 2,
                             Value = 3.0
                         },
                         new
@@ -375,6 +387,7 @@ namespace CourseLibrary.API.Migrations
                             Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad98"),
                             CategoryId = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                             CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
+                            UserId = 3,
                             Value = 1.0
                         },
                         new
@@ -382,6 +395,7 @@ namespace CourseLibrary.API.Migrations
                             Id = new Guid("40ff5488-fdab-45b5-bc3a-14302d59869b"),
                             CategoryId = new Guid("2902b665-1190-4c70-9915-b9c2d7680450"),
                             CourseId = new Guid("d8663e5e-7494-4f81-8739-6e0de1bea7ee"),
+                            UserId = 3,
                             Value = 4.0
                         },
                         new
@@ -389,6 +403,7 @@ namespace CourseLibrary.API.Migrations
                             Id = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad99"),
                             CategoryId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             CourseId = new Guid("d173e20d-159e-4127-9ce9-b0ac2564ad97"),
+                            UserId = 5,
                             Value = 3.0
                         });
                 });
