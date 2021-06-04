@@ -30,6 +30,7 @@ namespace WebApi.Controllers
         public IActionResult Authenticate([FromBody] AuthenticateModel model)
         {
             var user = _userService.Authenticate(model.Username, model.Password);
+            Console.WriteLine("here to login" + model.Username);
             var result = _mapper.Map<RegisterResponseDto>(user);
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });

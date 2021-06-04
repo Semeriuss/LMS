@@ -16,22 +16,38 @@ using System.Threading.Tasks;
 public class VideosController : ControllerBase
 {
     private readonly IResourcesRepository _resourceRepository;
+    private readonly IContentRepository _contentRepository;
     private readonly IMapper _mapper;
     private string pathForFiles = Environment.CurrentDirectory + "/" + "FileStorage";
 
-    public VideosController(IResourcesRepository resourcesRepository, IMapper mapper)
+    public VideosController(IResourcesRepository resourcesRepository, IMapper mapper, IContentRepository contentRepository)
     {
         _resourceRepository = resourcesRepository ??
             throw new ArgumentNullException(nameof(resourcesRepository));
         _mapper = mapper ??
             throw new ArgumentNullException(nameof(mapper));
+        _contentRepository = contentRepository;
     }
     
 
     [HttpGet]
-    public IActionResult Get(string filename)
+    public IActionResult Get(Guid categoryId, Guid courseId, Guid contentId)
     {
-        string path = Path.Combine(pathForFiles, filename);
+
+        if (!_contentRepository.CategoryExists(categoryId) || !_contentRepository.CourseExists(courseId))
+        {
+            return NotFound();
+        }
+
+        var contentFromRepo = _contentRepository.GetContent(categoryId, courseId, contentId);
+        if (contentFromRepo == null)
+        {
+            return NotFound();
+        }
+
+        var a = _mapper.Map<ContentDto>(contentFromRepo);
+
+        string path = Path.Combine(pathForFiles, a.Data);
         return PhysicalFile(path, "application/octet-stream", enableRangeProcessing: true);
     }
 

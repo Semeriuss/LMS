@@ -65,8 +65,10 @@ namespace CourseLibrary.API.Controllers
 
         [HttpPost]
         public ActionResult<CategoryDto> CreateCategory(CategoryForCreationDto category)
-        {   
+        {
+            Console.WriteLine("category creation ", category.Title);
             var categoryEntity = _mapper.Map<Entities.Category>(category);
+           
             _categoryRepository.AddCategory(categoryEntity);
             _categoryRepository.Save();
 
