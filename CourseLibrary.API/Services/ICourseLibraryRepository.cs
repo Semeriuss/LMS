@@ -24,11 +24,15 @@ namespace CourseLibrary.API.Services
 
         //Category
         IEnumerable<Category> GetCategories(Guid courseId);
+        object GetBadge(Guid userId);
         bool CategoryExists(Guid categoryId);
         Category GetCategory(Guid categoryId);
         void AddCategory(Category category);
         void UpdateCategory(Category category);
         void DeleteCategory(Category category);
         bool CourseExists(Guid courseId);
+        void AddBadge(Guid UserId);
+        bool UserExists(Guid userId);
+        void GetBadgeNum(Guid badgeId, Badge badge);
     }
 }

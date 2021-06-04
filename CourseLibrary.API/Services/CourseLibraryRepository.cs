@@ -254,5 +254,34 @@ namespace CourseLibrary.API.Services
 
             return _context.Authors.Any(a => a.Id == CourseId);
         }
+        public bool UserExists(Guid UserId)
+        {
+            if (UserId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(UserId));
+            }
+
+            return _context.Authors.Any(a => a.Id == UserId);
+        }
+        public void Addbadge(Badge badge)
+        {
+            if (badge == null)
+            {
+                throw new ArgumentNullException(nameof(badge));
+            }
+
+            badge.UserId = Guid.NewGuid();
+            _context.Categories.Add(badge);
+        }
+        public void GetBadgeNum(Guid badgeId, Badge badge)
+        {   
+            
+            if (badge == null)
+            {
+                throw new ArgumentNullException(nameof(badge));
+            }
+            badge.BadgeAmount = a;
+
+        }
     }
 }

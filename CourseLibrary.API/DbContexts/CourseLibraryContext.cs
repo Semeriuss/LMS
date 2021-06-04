@@ -14,6 +14,7 @@ namespace CourseLibrary.API.DbContexts
         public DbSet<Author> Authors { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Badge> Badges { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
